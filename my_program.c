@@ -29,13 +29,13 @@ int	main(void)
 	img.img = mlx_new_image(mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
-	while (i < 30)
+	while (i < 1000)
 	{
-		my_mlx_pixel_put(&img, i, j, 0x00FF0000);
+		my_mlx_pixel_put(&img, i, j, 0x00008080);
 		i++;
-		while (j < 30)
+		while (j < 1000)
 		{
-		my_mlx_pixel_put(&img, i, j, 0x00FF0000);
+		my_mlx_pixel_put(&img, i, j, 0x00008080);
 		j++;
 		}
 		j = 0;
