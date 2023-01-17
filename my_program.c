@@ -1,4 +1,5 @@
 #include <mlx.h>
+#include <stdlib.h>
 
 typedef struct	s_data {
 	void	*img;
@@ -7,6 +8,18 @@ typedef struct	s_data {
 	int		line_length;
 	int		endian;
 }				t_data;
+
+int	key_press_exit(int key)
+{
+	if (key == 53 || key == 17)
+		exit(0);
+	return(0);
+}
+
+int	close_window()
+{
+	exit(0);
+}
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -35,11 +48,13 @@ int	main(void)
 		i++;
 		while (j < 1000)
 		{
-		my_mlx_pixel_put(&img, i, j, 0x00008080);
-		j++;
+			my_mlx_pixel_put(&img, i, j, 0x00008080);
+			j++;
 		}
 		j = 0;
 	}
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_hook(mlx_win, 2, 1L<<0, key_press_exit, 0);
+	mlx_hook(mlx_win, 17, 0, close_window, 0);
 	mlx_loop(mlx);
 }
