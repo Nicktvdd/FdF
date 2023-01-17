@@ -1,6 +1,10 @@
 #include <mlx.h>
 #include <stdlib.h>
 
+#define WIDTH 1920
+#define HEIGHT 1080
+#define CELL_SIZE 100
+
 typedef struct	s_data {
 	void	*img;
 	char	*addr;
@@ -8,6 +12,39 @@ typedef struct	s_data {
 	int		line_length;
 	int		endian;
 }				t_data;
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
+void	draw_grid(t_data *data)
+{
+	int	x;
+	int	y;
+	int	x_iso;
+	int	y_iso;
+
+	x = 0;
+	y = 0;
+	while (y < HEIGHT)
+	{
+		while (x < WIDTH)
+		{
+			x_iso = x - y;
+			y_iso = (x + y) / 2;
+			my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);
+			my_mlx_pixel_put(data, x_iso + CELL_SIZE, y_iso, 0xFFFFFF);
+			my_mlx_pixel_put(data, x_iso, y_iso + CELL_SIZE, 0xFFFFFF);
+			my_mlx_pixel_put(data, x_iso + CELL_SIZE, y_iso + CELL_SIZE, 0xFFFFFF);
+			x += CELL_SIZE;
+		}
+		y += CELL_SIZE;
+	}
+}
 
 int	key_press_exit(int key)
 {
@@ -21,38 +58,18 @@ int	close_window()
 	exit(0);
 }
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
 int	main(void)
 {
 	void	*mlx;
 	void	*mlx_win;
 	t_data	img;
-	int		i = 0;
-	int		j = 0;
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
+	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "Grid_FDF");
+	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
-	while (i < 1000)
-	{
-		my_mlx_pixel_put(&img, i, j, 0x00008080);
-		i++;
-		while (j < 1000)
-		{
-			my_mlx_pixel_put(&img, i, j, 0x00008080);
-			j++;
-		}
-		j = 0;
-	}
+	draw_grid(&img);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_hook(mlx_win, 2, 1L<<0, key_press_exit, 0);
 	mlx_hook(mlx_win, 17, 0, close_window, 0);
