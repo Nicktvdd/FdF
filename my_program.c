@@ -6,24 +6,16 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/24 10:55:03 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/24 12:37:43 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <stdlib.h>
+#include "fdf.h"
 
 #define WIDTH 1920
 #define HEIGHT 1080
 #define CELL_SIZE 100
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {

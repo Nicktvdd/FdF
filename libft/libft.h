@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 14:09:16 by nvan-den          #+#    #+#             */
-/*   Updated: 2022/12/12 15:05:41 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:06:34 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char*s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+char	*get_next_line(int fd);
+int		ft_printf(const char *str, ...);
 
 #endif
