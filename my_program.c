@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   my_program.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
+/*   Updated: 2023/01/24 10:55:03 by nvan-den         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <mlx.h>
 #include <stdlib.h>
 
@@ -23,7 +35,10 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 void	draw_grid(t_data *data)
 {
-	int	x;
+	
+
+
+/* 	int	x;
 	int	y;
 	int	x_iso;
 	int	y_iso;
@@ -43,7 +58,7 @@ void	draw_grid(t_data *data)
 			x += CELL_SIZE;
 		}
 		y += CELL_SIZE;
-	}
+	} */
 }
 
 int	key_press_exit(int key)
@@ -58,7 +73,7 @@ int	close_window()
 	exit(0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	void	*mlx;
 	void	*mlx_win;
