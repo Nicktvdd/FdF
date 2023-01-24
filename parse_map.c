@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/24 13:59:29 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/24 16:02:28 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 int	count_lines(int fd)
 {
-	int	*line;
-	int	count;
+	char	*line;
+	int		count;
 
 	line = get_next_line(fd);
 	while(line)
@@ -30,24 +30,23 @@ int	count_lines(int fd)
 	return(count);
 }
 
-int	*parse_map(int argc, char **argv)
+char ***parse_map(int argc, char **argv)
 {
 	int fd;
 	int i;
 	char *line;
-	int *map;
+	char ***map;
 
 	fd = open (argv[1], O_RDONLY);
-	map = malloc(sizeof(int*) * count_lines(fd));
+	map = malloc(sizeof(char***) * count_lines(fd));
 	close(fd);
 	fd = open (argv[1], O_RDONLY);
 	i = 0;
 	if (fd)
 	{
-		while (line = get_next_line(fd))
+		while ((line = get_next_line(fd)))// apply atoi?
 		{
-			line = ft_split(line, " ");
-			map[i] = line;
+			map[i] = ft_split(line, ' ');
 			i++;
 		}
 	}
@@ -59,7 +58,7 @@ void test_parse_map() {
     int argc = 2;
     char *argv[] = {"test_program", "test_file.txt"};
 
-    int *map = parse_map(argc, argv);
+    char ***map = parse_map(argc, argv);
 
     // check if the map was correctly parsed
     // and if the number of lines match
