@@ -6,13 +6,27 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/25 10:33:34 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:32:28 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h> //remove this!
 #include "libft/libft.h"
+
+void ft_strsplit_free(char ***strs) {
+    int i = 0;
+    while (strs[i]) {
+        int j = 0;
+        while (strs[i][j]) {
+            free(strs[i][j]);
+            j++;
+        }
+        free(strs[i]);
+        i++;
+    }
+    free(strs);
+}
 
 int	count_lines(int fd)
 {
@@ -24,9 +38,10 @@ int	count_lines(int fd)
 	{
 		free(line);
 		count++;
-		line = get_next_line(fd);
+		line = get_next_line(fd); // check if gnl returns
 	}
-	free(line);
+	if (line)
+		free(line);
 	return(count);
 }
 
@@ -38,7 +53,11 @@ char ***parse_map(int argc, char **argv)
 	char ***map;
 
 	fd = open (argv[1], O_RDONLY);
-	map = malloc(sizeof(char***) * count_lines(fd));
+	if (!fd)
+		return(NULL);
+	map = malloc(sizeof(char**) * count_lines(fd));//check if count lines returns
+	if (!map)
+		return(NULL);
 	close(fd);
 	fd = open (argv[1], O_RDONLY);
 	i = 0;
@@ -46,33 +65,35 @@ char ***parse_map(int argc, char **argv)
 	{
 		while ((line = get_next_line(fd)))// apply atoi?
 		{
-			map[i] = ft_split(line, ' ');
+			map[i] = ft_split(line, ' '); //check if ft_split returns
+			if (!map[i])
+				return(NULL);
+			free(line);
 			i++;
 		}
+		map[i] = NULL;
 	}
 	close(fd);
 	return(map);
 }
 
-void test_parse_map() {
+int main() {
     int argc = 2;
     char *argv[] = {"test_program", "test_file.txt"};
 
     char ***map = parse_map(argc, argv);
 
     // check if the map was correctly parsed
-    // and if the number of lines match
     if (map != NULL) {
         printf("Map successfully parsed!\n");
-        int lines = count_lines(open(argv[1], O_RDONLY));
-        printf("Number of lines: %d\n", lines);
+        for (int i = 0; map[i] != NULL; i++) {
+            for (int j = 0; map[i][j] != NULL; j++)
+                printf("%s ", map[i][j]);
+            printf("\n");
+        }
     } else {
         printf("Map parsing failed\n");
     }
-    free(map);
-}
-
-int main(int argc, char **argv) {
-    test_parse_map();
-    return 0;
+   ft_strsplit_free(map);
+return(0);
 }
