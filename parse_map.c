@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/25 13:12:47 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/25 14:45:29 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	count_lines(int fd)
 		free(line);
 	return(count);
 }
-
+// remove newlines!
 char ***parse_map(int argc, char **argv)
 {
 	int fd;
@@ -68,8 +68,8 @@ char ***parse_map(int argc, char **argv)
 	{
 		while ((line = get_next_line(fd)))// apply atoi?
 		{
-			map[i] = ft_split(line, ' '); //check if ft_split returns
-			if (!map[i])
+			map[i] = ft_split(line, ' '); 
+			if (!map[i])//checks if ft_split returns
 				return(NULL);
 			free(line);
 			i++;

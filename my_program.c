@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/25 14:19:31 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/25 14:52:00 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,20 @@ void	draw_grid(t_data *data, char ***map)
 	j = 0;
 	if (!map)
 		return;
-	while (*map[i][j])
+	while (map[i][j])
 	{
 		while (map[i][j])
 		{
 			x_iso = x - y;
 			y_iso = (x + y) / 2;
 			my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);
+			my_mlx_pixel_put(data, x_iso + CELL_SIZE, y_iso, 0xFFFFFF);
+			my_mlx_pixel_put(data, x_iso, y_iso + CELL_SIZE, 0xFFFFFF);
+			my_mlx_pixel_put(data, x_iso + CELL_SIZE, y_iso + CELL_SIZE, 0xFFFFFF);
 			x += CELL_SIZE;
 			j++;
 		}
+		j = 0;
 		y += CELL_SIZE;
 		i++;
 
@@ -99,6 +103,8 @@ int	main(int argc, char **argv)
 	char	***map;
 
 	map = parse_map(argc, argv);
+	if (!map)
+		return(1);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "Grid_FDF");
 	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
