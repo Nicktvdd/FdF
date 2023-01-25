@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/24 12:37:43 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:16:29 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,28 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	draw_grid(t_data *data)
+// this is supposed to have a seperate i&j and x&y?
+void	draw_grid(t_data *data, char ***map)
 {
-	
+	int	x;
+	int	y;
+	int	x_iso;
+	int	y_iso;
 
+	x = 0;
+	y = 0;
+	while (map[y][x])
+	{
+		while (map[y][x])
+		{
+			x_iso = x - y;
+			y_iso = (x + y) / 2;
+			my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);
+			x += CELL_SIZE;
+		}
+		y += CELL_SIZE;
 
+	}
 /* 	int	x;
 	int	y;
 	int	x_iso;
@@ -70,13 +87,15 @@ int	main(int argc, char **argv)
 	void	*mlx;
 	void	*mlx_win;
 	t_data	img;
+	char	***map;
 
+	map = parse_map(argc, argv);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "Grid_FDF");
 	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
-	draw_grid(&img);
+	draw_grid(&img, map);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_hook(mlx_win, 2, 1L<<0, key_press_exit, 0);
 	mlx_hook(mlx_win, 17, 0, close_window, 0);

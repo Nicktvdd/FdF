@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/25 12:32:28 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:12:47 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	count_lines(int fd)
 	char	*line;
 	int		count;
 
+	count = 0;
 	line = get_next_line(fd);
 	while(line)
 	{
@@ -52,6 +53,8 @@ char ***parse_map(int argc, char **argv)
 	char *line;
 	char ***map;
 
+	if (argc == 0)
+		return(0);
 	fd = open (argv[1], O_RDONLY);
 	if (!fd)
 		return(NULL);
@@ -77,9 +80,9 @@ char ***parse_map(int argc, char **argv)
 	return(map);
 }
 
-int main() {
+/* int main() {
     int argc = 2;
-    char *argv[] = {"test_program", "test_file.txt"};
+    char *argv[] = {"test_program", "test_maps/42.fdf"};
 
     char ***map = parse_map(argc, argv);
 
@@ -96,4 +99,4 @@ int main() {
     }
    ft_strsplit_free(map);
 return(0);
-}
+} */

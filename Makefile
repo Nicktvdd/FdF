@@ -1,5 +1,5 @@
 NAME = my_program
-SRCS = my_program.c
+SRCS = my_program.c parse_map.c
 OBJS = $(SRCS:.c=.o)
 
 LIBMLX = minilibx_macos/libmlx.a
