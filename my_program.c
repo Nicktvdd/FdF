@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/25 13:16:29 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/25 14:19:31 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,34 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 }
 
 // this is supposed to have a seperate i&j and x&y?
+// atoi somewhere here probably!
 void	draw_grid(t_data *data, char ***map)
 {
 	int	x;
 	int	y;
 	int	x_iso;
 	int	y_iso;
+	int	i;
+	int	j;
 
 	x = 0;
 	y = 0;
-	while (map[y][x])
+	i = 0;
+	j = 0;
+	if (!map)
+		return;
+	while (*map[i][j])
 	{
-		while (map[y][x])
+		while (map[i][j])
 		{
 			x_iso = x - y;
 			y_iso = (x + y) / 2;
 			my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);
 			x += CELL_SIZE;
+			j++;
 		}
 		y += CELL_SIZE;
+		i++;
 
 	}
 /* 	int	x;
