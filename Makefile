@@ -15,6 +15,7 @@ $(NAME): $(OBJS) $(LIBMLX) $(LIBFT)
 
 %.o: %.c
 	make -C libft/
+	make -C minilibx_macos/
 	gcc $(CFLAGS) -c $< -o $@
 
 clean:

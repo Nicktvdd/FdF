@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/26 15:47:01 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:57:47 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char ***parse_map(int argc, char **argv)
 	return(map);
 }
 
-int **map_atoi(const char ***map)
+/* int **map_atoi(const char ***map)
 {
 	int i;
 	int j;
@@ -112,7 +112,7 @@ int **map_atoi(const char ***map)
 	}
 	ft_strsplit_free(map);
 	return(intmap);
-}
+} */
 
 int main() {
     int argc = 2;
@@ -132,6 +132,6 @@ int main() {
         printf("Map parsing failed\n");
     }
    ft_strsplit_free(map);
-   map_atoi((const char***)map);
+   //map_atoi((const char***)map);
 return(0);
 }
