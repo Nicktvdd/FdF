@@ -14,6 +14,7 @@ $(NAME): $(OBJS) $(LIBMLX) $(LIBFT)
 	gcc $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJS) $(LIBMLX) $(LIBFT)
 
 %.o: %.c
+	make -C libft/
 	gcc $(CFLAGS) -c $< -o $@
 
 clean:
