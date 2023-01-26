@@ -19,8 +19,8 @@ $(NAME): $(OBJS) $(LIBMLX) $(LIBFT)
 
 clean:
 	rm -f $(OBJS)
-	rm -f minilibx_macos/$(OBJS)
-	rm -f libft/$(OBJS)
+	make clean -C minilibx_macos
+	make clean -C libft/
 
 fclean: clean
 	rm -f $(NAME)
