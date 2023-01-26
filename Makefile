@@ -1,5 +1,5 @@
-NAME = my_program
-SRCS = my_program.c parse_map.c
+NAME = fdf
+SRCS = fdf.c parse_map.c
 OBJS = $(SRCS:.c=.o)
 
 LIBMLX = minilibx_macos/libmlx.a
@@ -29,4 +29,4 @@ re: fclean all
 
 test:
 	make all
-	./my_program
+	./fdf
