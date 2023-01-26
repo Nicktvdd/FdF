@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_program.c                                       :+:      :+:    :+:   */
+/*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/25 14:52:00 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/26 14:42:43 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	draw_grid(t_data *data, char ***map)
 	j = 0;
 	if (!map)
 		return;
-	while (map[i][j])
+	while (map[i][j][0] != '\n')
 	{
-		while (map[i][j])
+		while (map[i][j][0] != '\n')
 		{
 			x_iso = x - y;
 			y_iso = (x + y) / 2;
@@ -58,7 +58,6 @@ void	draw_grid(t_data *data, char ***map)
 		j = 0;
 		y += CELL_SIZE;
 		i++;
-
 	}
 /* 	int	x;
 	int	y;

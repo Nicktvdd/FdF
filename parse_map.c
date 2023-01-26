@@ -6,14 +6,14 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/25 14:45:29 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:47:01 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <stdio.h> //remove this!
 #include "libft/libft.h"
-
+//PROTECT ALL MALLOCS
 void ft_strsplit_free(char ***strs) {
     int i = 0;
     while (strs[i]) {
@@ -63,6 +63,8 @@ char ***parse_map(int argc, char **argv)
 		return(NULL);
 	close(fd);
 	fd = open (argv[1], O_RDONLY);
+	if (!fd)
+		return (NULL);
 	i = 0;
 	if (fd)
 	{
@@ -80,7 +82,39 @@ char ***parse_map(int argc, char **argv)
 	return(map);
 }
 
-/* int main() {
+int **map_atoi(const char ***map)
+{
+	int i;
+	int j;
+	int	**intmap;
+
+	i = 0;
+	j = 0;
+	intmap = malloc(sizeof(int*) * ft_strlen(map));
+	if (!intmap)
+		return(NULL);
+	while (map[i])
+	{
+		intmap[i] = malloc(sizeof(int) * ft_strlen(map[i]));
+		if (!intmap[i])
+			return(NULL);
+		i++;
+	}
+	while (map[i])
+	{
+		while (map[i][j])
+		{
+			intmap[i][j] = ft_atoi(map[i][j]);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	ft_strsplit_free(map);
+	return(intmap);
+}
+
+int main() {
     int argc = 2;
     char *argv[] = {"test_program", "test_maps/42.fdf"};
 
@@ -98,5 +132,6 @@ char ***parse_map(int argc, char **argv)
         printf("Map parsing failed\n");
     }
    ft_strsplit_free(map);
+   map_atoi((const char***)map);
 return(0);
-} */
+}
