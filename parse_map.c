@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/27 12:47:44 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/27 14:53:31 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ size_t ft_strlen_2d(char **strs) {
     return len;
 }
 
-size_t ft_strlen_3d(const char ****str)
+size_t ft_strlen_3d(char ***str)
 {
     size_t i;
     size_t j;
@@ -118,39 +118,6 @@ char ***parse_map(int argc, char **argv)
 	close(fd);
 	return(map);
 }
-
-int **map_atoi(const char ***map)
-{
-	int i;
-	int j;
-	int	**intmap;
-
-	i = 0;
-	j = 0;
-	intmap = malloc(sizeof(int*) * ft_strlen_3d(map));
-	if (!intmap)
-		return(NULL);
-	while (map[i])
-	{
-		intmap[i] = malloc(sizeof(int) * ft_strlen_2d(map[i]) + 1);
-		if (!intmap[i])
-			return(NULL);
-		i++;
-	}
-	i = 0;
-	while (map[i][j])
-	{
-		while (map[i][j])
-		{
-			intmap[i][j] = ft_atoi(map[i][j]);
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	ft_strsplit_free(map);
-	return(intmap);
-} 
 
 void test_map_atoi(const char ***map)
 {
