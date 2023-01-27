@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:35:05 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/25 14:15:26 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/27 10:40:00 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <mlx.h>
 #include <fcntl.h>
+#include "libft/libft.h"
 
 typedef struct	s_data {
 	void	*img;
