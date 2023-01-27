@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/27 14:53:31 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/27 14:55:11 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,32 +119,7 @@ char ***parse_map(int argc, char **argv)
 	return(map);
 }
 
-void test_map_atoi(const char ***map)
-{
-    int **intmap;
-    int i, j;
-
-    intmap = map_atoi(map);
-    if (!intmap)
-        printf("Error allocating memory for intmap\n");
-    else
-    {
-        i = 0;
-        while (intmap[i])
-        {
-            j = 0;
-            while (intmap[i][j])
-            {
-                printf("%d ", intmap[i][j]);
-                j++;
-            }
-            printf("\n");
-            i++;
-        }
-    }
-}
-
- /* int main() 
+ int main() 
  {
     int argc = 2;
     char *argv[] = {"test_program", "test_maps/42.fdf"};
@@ -164,7 +139,6 @@ void test_map_atoi(const char ***map)
     } 
 	else 
         printf("Map parsing failed\n");
-   //ft_strsplit_free(map);
-  test_map_atoi(map);
+   ft_strsplit_free(map);
 return(0); */
 } 
