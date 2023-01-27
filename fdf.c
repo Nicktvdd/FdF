@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/27 14:11:54 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/27 15:00:05 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ void	draw_grid(t_data *data, char ***map)
 		x = 0;
 	if (!map)
 		return;
-	while (map[i][j][0] != '\n')
+	ft_printf("%s\n", map[i][j]);
+	while (map[i][j] != NULL)
 	{
-		while (map[i][j][0] != '\n')
+		while (map[i][j] != NULL)
 		{
 			x_iso = x - y;
 			y_iso = (x + y) / 2;

@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/27 14:55:11 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/27 14:56:44 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ size_t ft_strlen_3d(char ***str)
     return (len);
 }
 
-
 int	count_lines(int fd)
 {
 	char	*line;
@@ -119,7 +118,7 @@ char ***parse_map(int argc, char **argv)
 	return(map);
 }
 
- int main() 
+/*  int main() 
  {
     int argc = 2;
     char *argv[] = {"test_program", "test_maps/42.fdf"};
@@ -140,5 +139,5 @@ char ***parse_map(int argc, char **argv)
 	else 
         printf("Map parsing failed\n");
    ft_strsplit_free(map);
-return(0); */
-} 
+return(0);
+}  */
