@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/31 14:22:11 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:36:34 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define WIDTH 1920
 #define HEIGHT 1080
-#define CELL_SIZE 2
+#define CELL_SIZE 9
 
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -48,12 +48,13 @@ void	draw_grid(t_data *data, char ***map)
 		return;
 	while (map[i] != NULL)
 	{
-
 		while (map[i][j] != NULL)
 		{
 			ft_printf("%s", map[i][j]);
-			x_iso = x - y;
-			y_iso = (x + y) / 2;
+/* 			x_iso = x - y;
+			y_iso = (x + y) / 2; */
+			x_iso = x;
+			y_iso = y;
  			my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);
  			my_mlx_pixel_put(data, x_iso + CELL_SIZE, y_iso, 0xFFFFFF);
 			my_mlx_pixel_put(data, x_iso, y_iso + CELL_SIZE, 0xFFFFFF);
@@ -62,6 +63,7 @@ void	draw_grid(t_data *data, char ***map)
 			j++;
 		}
 		j = 0;
+		x = 0;
 		y += CELL_SIZE;
 		i++;
 	}
