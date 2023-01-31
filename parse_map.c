@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/27 14:56:44 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/31 12:16:45 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ int	count_lines(int fd)
 	{
 		free(line);
 		count++;
-		line = get_next_line(fd); // check if gnl returns
+		line = get_next_line(fd); 
 	}
-	if (line)
+	if (line)//checks if gnl returns
 		free(line);
 	return(count);
 }
@@ -94,8 +94,8 @@ char ***parse_map(int argc, char **argv)
 	fd = open (argv[1], O_RDONLY);
 	if (!fd)
 		return(NULL);
-	map = malloc(sizeof(char**) * count_lines(fd));//check if count lines returns
-	if (!map)
+	map = malloc(sizeof(char**) * count_lines(fd));
+	if (!map)//checks if count lines returns
 		return(NULL);
 	close(fd);
 	fd = open (argv[1], O_RDONLY);

@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/27 15:00:05 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/01/31 14:22:11 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define WIDTH 1920
 #define HEIGHT 1080
-#define CELL_SIZE 100
+#define CELL_SIZE 2
 
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -42,20 +42,22 @@ void	draw_grid(t_data *data, char ***map)
 	j = 0;
 	if (data)
 		x = 0;
+	if (map)
+        ft_printf("Map successfully parsed!\n");
 	if (!map)
 		return;
-	ft_printf("%s\n", map[i][j]);
-	while (map[i][j] != NULL)
+	while (map[i] != NULL)
 	{
+
 		while (map[i][j] != NULL)
 		{
+			ft_printf("%s", map[i][j]);
 			x_iso = x - y;
 			y_iso = (x + y) / 2;
-			my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);
-			my_mlx_pixel_put(data, x_iso + CELL_SIZE, y_iso, 0xFFFFFF);
+ 			my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);
+ 			my_mlx_pixel_put(data, x_iso + CELL_SIZE, y_iso, 0xFFFFFF);
 			my_mlx_pixel_put(data, x_iso, y_iso + CELL_SIZE, 0xFFFFFF);
 			my_mlx_pixel_put(data, x_iso + CELL_SIZE, y_iso + CELL_SIZE, 0xFFFFFF);
-			ft_printf("x is: %i, y is %i\n", x, y);
 			x += CELL_SIZE;
 			j++;
 		}
