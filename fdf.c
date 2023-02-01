@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/01 14:18:44 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/01 14:42:45 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ if (dx > dy)
     d = 2 * dy - dx;
     for (x = x1, y = y1; x != x2; x += s1)
     {
-        my_mlx_pixel_put(data, x, y, 0xFFFFFF);
+		int iso_x = x - y;
+        int iso_y = (x + y) / 2;
+        my_mlx_pixel_put(data, iso_x, iso_y, 0xFFFFFF);
         if (d > 0)
         {
             y += s2;
@@ -57,7 +59,9 @@ else
     d = 2 * dx - dy;
     for (x = x1, y = y1; y != y2; y += s2)
     {
-        my_mlx_pixel_put(data, x, y, 0xFFFFFF);
+		int iso_x = x - y;
+        int iso_y = (x + y) / 2;
+        my_mlx_pixel_put(data, iso_x, iso_y, 0xFFFFFF);
         if (d > 0)
         {
             x += s1;
@@ -100,15 +104,13 @@ else
 // atoi somewhere here probably!
 void    draw_grid(t_data *data, char ***map)
 {
-    int x;
-    int y;
     int x_iso;
     int y_iso;
     int i;
     int j;
 
-    x = WIDTH / 2;
-    y = 0;
+    data->x = WIDTH / 2;
+    data->y = 0;
     i = 0;
     j = 0;
     if (!map)
@@ -118,17 +120,18 @@ void    draw_grid(t_data *data, char ***map)
         while (map[i][j][1] != '\n') //until '\n'
         {
             //number = ft_atoi(map[i][j]);
-            x_iso = x - y;
-            y_iso = (x + y) / 2;
+            x_iso = data->x - data->y;
+            y_iso = (data->x + data->y) / 2;
+			x_iso = data->x;
+			y_iso = data->y;
             draw_line(data, x_iso, y_iso, x_iso + CELL_SIZE, y_iso);
 			draw_line(data, x_iso, y_iso, x_iso, y_iso + CELL_SIZE);
-			my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);
-            x += CELL_SIZE;
+            data->x += CELL_SIZE;
             j++;
         }
         j = 0;
-        x = WIDTH / 2;
-        y += CELL_SIZE;
+        data->x = WIDTH / 2;
+        data->y += CELL_SIZE;
         i++;
     }
 }
