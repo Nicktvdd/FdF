@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/01 15:29:29 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/01 16:17:04 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void    draw_grid(t_data *data, char ***map)
     int y_iso;
     int i;
     int j;
+	int number;
 
     data->x = WIDTH / 2;
     data->y = 0;
@@ -87,11 +88,9 @@ void    draw_grid(t_data *data, char ***map)
         while (map[i][j] != NULL) //until '\n'
         {
 			ft_printf("%i ", j);
-            //number = ft_atoi(map[i][j]);
-            x_iso = data->x - data->y;
-            y_iso = (data->x + data->y) / 2;
-			x_iso = data->x;
-			y_iso = data->y;
+            number = ft_atoi(map[i][j]);
+			x_iso = data->x + (number * 10);
+			y_iso = data->y + (number * 10);
 			if (map[i][j + 1] != NULL)
             	draw_line(data, x_iso, y_iso, x_iso + CELL_SIZE, y_iso);
 			if (map[i + 1] != NULL)
