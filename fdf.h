@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:35:05 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/01 12:27:37 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/01 15:06:37 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <mlx.h>
 #include <fcntl.h>
 #include "libft/libft.h"
+
+#define WIDTH 1920
+#define HEIGHT 1080
+#define CELL_SIZE 30
 
 typedef struct s_data
 {

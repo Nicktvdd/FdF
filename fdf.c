@@ -6,15 +6,11 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/01 14:42:45 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/01 15:06:38 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-#define WIDTH 1920
-#define HEIGHT 1080
-#define CELL_SIZE 30
 
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -27,80 +23,51 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 void draw_line(t_data *data, int x1, int y1, int x2, int y2)
 {
-int dx = x2 - x1;
-int dy = y2 - y1;
-int x, y, d, s1, s2;
-if (x1 < x2)
-    s1 = 1;
-else
-	s1 = -1;
-if (y1 < y2)
-    s2 = 1;
-else
-    s2 = -1;
-if (dx > dy)
-{
-    d = 2 * dy - dx;
-    for (x = x1, y = y1; x != x2; x += s1)
+    int dx = x2 - x1;
+    int dy = y2 - y1;
+    int x, y, d, s1, s2;
+    if (x1 < x2)
+        s1 = 1;
+    else
+        s1 = -1;
+    if (y1 < y2)
+        s2 = 1;
+    else
+        s2 = -1;
+    if (dx > dy)
     {
-		int iso_x = x - y;
-        int iso_y = (x + y) / 2;
-        my_mlx_pixel_put(data, iso_x, iso_y, 0xFFFFFF);
-        if (d > 0)
+        d = 2 * dy - dx;
+        for (x = x1, y = y1; x != x2; x += s1)
         {
-            y += s2;
-            d -= 2 * dx;
-        }
-        d += 2 * dy;
-    }
-}
-else
-{
-    d = 2 * dx - dy;
-    for (x = x1, y = y1; y != y2; y += s2)
-    {
-		int iso_x = x - y;
-        int iso_y = (x + y) / 2;
-        my_mlx_pixel_put(data, iso_x, iso_y, 0xFFFFFF);
-        if (d > 0)
-        {
-            x += s1;
-            d -= 2 * dy;
-        }
-        d += 2 * dx;
-    }
-}
-}
-
-//less lines but not useable:
-/* void draw_line(t_data *data, int x1, int y1, int x2, int y2)
-{
-    int delta_x = abs(x2 - x1);
-    int delta_y = abs(y2 - y1);
-    int sign_x = x1 < x2 ? 1 : -1;
-    int sign_y = y1 < y2 ? 1 : -1;
-    int error = delta_x - delta_y;
-    int error2;
-
-    my_mlx_pixel_put(data, x2, y2, 0xFFFFFF);
-    while (x1 != x2 || y1 != y2)
-    {
-        my_mlx_pixel_put(data, x1, y1, 0xFFFFFF);
-        error2 = error * 2;
-        if (error2 > -delta_y)
-        {
-            error -= delta_y;
-            x1 += sign_x;
-        }
-        if (error2 < delta_x)
-        {
-            error += delta_x;
-            y1 += sign_y;
+            int x_iso = x - y;
+            int y_iso = (x + y) / 2;
+            my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);
+            if (d > 0)
+            {
+                y += s2;
+                d -= 2 * dx;
+            }
+            d += 2 * dy;
         }
     }
-} */
+    else
+    {
+        d = 2 * dx - dy;
+        for (x = x1, y = y1; y != y2; y += s2)
+        {
+            int x_iso = x - y;
+            int y_iso = (x + y) / 2;
+            my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);
+            if (d > 0)
+            {
+                x += s1;
+                d -= 2 * dy;
+            }
+            d += 2 * dx;
+        }
+    }
+}
 
-// this is supposed to have a seperate i&j and x&y?
 // atoi somewhere here probably!
 void    draw_grid(t_data *data, char ***map)
 {
