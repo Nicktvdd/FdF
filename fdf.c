@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/02 11:26:09 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/02 12:37:09 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ void    draw_grid(t_data *data, char ***map)
 			x_iso = data->x - number;
 			y_iso = data->y - number;
 			if (map[i][j + 1] != NULL)
-            	draw_line(data, x_iso, y_iso, x_iso + CELL_SIZE, y_iso, number);
+            	draw_line(data, x_iso, y_iso, x_iso + CELL_SIZE + number, y_iso + number, number);
 			if (map[i + 1] != NULL)
-				draw_line(data, x_iso, y_iso, x_iso, y_iso + CELL_SIZE, number);
+				draw_line(data, x_iso, y_iso, x_iso + number, y_iso + CELL_SIZE + number, number);
             data->x += CELL_SIZE;
             j++;
         }
