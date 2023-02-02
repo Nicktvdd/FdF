@@ -11,7 +11,7 @@ LDFLAGS = -Lminilibx_macos -lmlx -framework OpenGL -framework AppKit
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBMLX) $(LIBFT)
-	gcc $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJS) $(LIBMLX) $(LIBFT)
+	gcc -o3 $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJS) $(LIBMLX) $(LIBFT)
 
 %.o: %.c
 	make -C libft/
@@ -31,4 +31,4 @@ re: fclean all
 
 test:
 	make all
-	./fdf test_maps/50-4.fdf
+	./fdf test_maps/42.fdf
