@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/01 16:17:04 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/02 11:26:09 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void draw_line(t_data *data, int x1, int y1, int x2, int y2)
+void draw_line(t_data *data, int x1, int y1, int x2, int y2, int number)
 {
     int dx = x2 - x1;
     int dy = y2 - y1;
     int x, y, d, s1, s2;
+	
     if (x1 < x2)
         s1 = 1;
     else
@@ -41,8 +42,11 @@ void draw_line(t_data *data, int x1, int y1, int x2, int y2)
         {
             int x_iso = x - y;
             int y_iso = (x + y) / 2;
-            my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);
-            if (d > 0)
+			if (number > 0)
+				my_mlx_pixel_put(data, x_iso, y_iso, 0xFF0000);
+			else
+        		my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);            
+				if (d > 0)
             {
                 y += s2;
                 d -= 2 * dx;
@@ -52,12 +56,15 @@ void draw_line(t_data *data, int x1, int y1, int x2, int y2)
     }
     else
     {
-        d = 2 * dx - dy;
+        d = (2 * dx - dy);
         for (x = x1, y = y1; y != y2; y += s2)
         {
             int x_iso = x - y;
             int y_iso = (x + y) / 2;
-            my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);
+			if (number > 0)
+				my_mlx_pixel_put(data, x_iso, y_iso, 0xFF0000);
+			else
+        		my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);
             if (d > 0)
             {
                 x += s1;
@@ -66,9 +73,9 @@ void draw_line(t_data *data, int x1, int y1, int x2, int y2)
             d += 2 * dx;
         }
     }
+	number = 0;
 }
 
-// atoi somewhere here probably!
 void    draw_grid(t_data *data, char ***map)
 {
     int x_iso;
@@ -85,16 +92,16 @@ void    draw_grid(t_data *data, char ***map)
         return;
     while (map[i] != NULL)
     {
-        while (map[i][j] != NULL) //until '\n'
+        while (map[i][j] != NULL)
         {
 			ft_printf("%i ", j);
-            number = ft_atoi(map[i][j]);
-			x_iso = data->x + (number * 10);
-			y_iso = data->y + (number * 10);
+            number = (ft_atoi(map[i][j]) * 2);
+			x_iso = data->x - number;
+			y_iso = data->y - number;
 			if (map[i][j + 1] != NULL)
-            	draw_line(data, x_iso, y_iso, x_iso + CELL_SIZE, y_iso);
+            	draw_line(data, x_iso, y_iso, x_iso + CELL_SIZE, y_iso, number);
 			if (map[i + 1] != NULL)
-				draw_line(data, x_iso, y_iso, x_iso, y_iso + CELL_SIZE);
+				draw_line(data, x_iso, y_iso, x_iso, y_iso + CELL_SIZE, number);
             data->x += CELL_SIZE;
             j++;
         }
