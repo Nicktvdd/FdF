@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/02 12:37:09 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/02 14:11:07 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,11 @@ void draw_line(t_data *data, int x1, int y1, int x2, int y2, int number)
 	number = 0;
 }
 
+/* 		if (map[i][j + 1])
+			nextnumber = ft_atoi(map[i][j + 1]);
+		else
+			nextnumber = 0; */
+			
 void    draw_grid(t_data *data, char ***map)
 {
     int x_iso;
@@ -83,6 +88,8 @@ void    draw_grid(t_data *data, char ***map)
     int i;
     int j;
 	int number;
+	int nextnumber;
+	int lownumber;
 
     data->x = WIDTH / 2;
     data->y = 0;
@@ -95,13 +102,21 @@ void    draw_grid(t_data *data, char ***map)
         while (map[i][j] != NULL)
         {
 			ft_printf("%i ", j);
-            number = (ft_atoi(map[i][j]) * 2);
-			x_iso = data->x - number;
-			y_iso = data->y - number;
+            number = (ft_atoi(map[i][j]));
+			if (map[i][j + 1])
+				nextnumber = (ft_atoi(map[i][j + 1]));
+			else
+				nextnumber = 0;
+			if (map[i + 1])
+				lownumber = (ft_atoi(map[i + 1][j]));
+			else
+				lownumber = 0;
+			x_iso = data->x /* - number */;
+			y_iso = data->y /* - number */;
 			if (map[i][j + 1] != NULL)
-            	draw_line(data, x_iso, y_iso, x_iso + CELL_SIZE + number, y_iso + number, number);
+            	draw_line(data, x_iso - number, y_iso - number, x_iso + CELL_SIZE - nextnumber, y_iso - nextnumber, number);
 			if (map[i + 1] != NULL)
-				draw_line(data, x_iso, y_iso, x_iso + number, y_iso + CELL_SIZE + number, number);
+				draw_line(data, x_iso - number, y_iso - number, x_iso - lownumber, y_iso + CELL_SIZE - lownumber, number);
             data->x += CELL_SIZE;
             j++;
         }
