@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/02 14:58:13 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/02 15:09:25 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,6 @@ void draw_line(t_data *data, int x1, int y1, int x2, int y2, int number)
 	number = 0;
 }
 
-/* 		if (map[i][j + 1])
-			nextnumber = ft_atoi(map[i][j + 1]);
-		else
-			nextnumber = 0; */
-			
 void    draw_grid(t_data *data, char ***map)
 {
     int x_iso;
