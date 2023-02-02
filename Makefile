@@ -31,4 +31,4 @@ re: fclean all
 
 test:
 	make all
-	./fdf test_maps/42.fdf
+	./fdf test_maps/50-4.fdf

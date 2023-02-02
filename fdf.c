@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/02 14:11:07 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/02 14:25:42 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,14 @@ void    draw_grid(t_data *data, char ***map)
 			if (map[i][j + 1])
 				nextnumber = (ft_atoi(map[i][j + 1]));
 			else
-				nextnumber = 0;
+				nextnumber = number;
 			if (map[i + 1])
 				lownumber = (ft_atoi(map[i + 1][j]));
 			else
-				lownumber = 0;
+				lownumber = number;
 			x_iso = data->x /* - number */;
 			y_iso = data->y /* - number */;
-			if (map[i][j + 1] != NULL)
+			if (map[i][j + 1])
             	draw_line(data, x_iso - number, y_iso - number, x_iso + CELL_SIZE - nextnumber, y_iso - nextnumber, number);
 			if (map[i + 1] != NULL)
 				draw_line(data, x_iso - number, y_iso - number, x_iso - lownumber, y_iso + CELL_SIZE - lownumber, number);
