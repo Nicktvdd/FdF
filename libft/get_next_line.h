@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:37:03 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/01/26 15:56:30 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/06 11:20:45 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 50
+#  define BUFFER_SIZE 60
 # endif
 
 char	*get_next_line(int fd);

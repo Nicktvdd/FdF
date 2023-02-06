@@ -30,5 +30,6 @@ fclean: clean
 re: fclean all
 
 test:
+	rm -f $(NAME)
 	make all
-	./fdf test_maps/pylone.fdf
+	./fdf test_maps/42.fdf
