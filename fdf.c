@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/06 12:52:10 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:46:20 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,14 @@ void    draw_grid(t_data *data, char ***map)
     j = 0;
     if (!map)
         return;
-    while (map[i] != NULL)
+    while (map[i + 1])
     {
-        while (map[i][j] != NULL)
+		i++;
+        while (map[i][j + 1])
         {
-			ft_printf("%i ", j);
+			j++;
             number = (ft_atoi(map[i][j]));
+			ft_printf("%i ", number);
 			if (map[i][j + 1])
 				nextnumber = (ft_atoi(map[i][j + 1]));
 			else
@@ -111,18 +113,16 @@ void    draw_grid(t_data *data, char ***map)
 				lownumber = number;
 			x_iso = data->x;
 			y_iso = data->y;
-			if (map[i][j + 1])
+			if (map[i][j + 1] && map[i][j])
             	draw_line(data, x_iso - number, y_iso - number, x_iso + CELL_SIZE - nextnumber, y_iso - nextnumber, number);
-			if (map[i + 1] != NULL)
+			if (map[i + 1] && map[i])
 				draw_line(data, x_iso - number, y_iso - number, x_iso - lownumber, y_iso + CELL_SIZE - lownumber, number);
             data->x += CELL_SIZE;
-            j++;
         }
         j = 0;
         data->x = WIDTH / 2;
         data->y += CELL_SIZE;
-        i++;
-		ft_printf("\n");
+		ft_printf("\n\n");
     }
 }
 
