@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/08 13:46:20 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/09 10:46:33 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,9 @@ void    draw_grid(t_data *data, char ***map)
         while (map[i][j + 1])
         {
 			j++;
-            number = (ft_atoi(map[i][j]));
+			//ft_printf("%s ", map[i][j]);
+			if (map[i][j][0] != '\n')
+            	number = (ft_atoi(map[i][j]));
 			ft_printf("%i ", number);
 			if (map[i][j + 1])
 				nextnumber = (ft_atoi(map[i][j + 1]));

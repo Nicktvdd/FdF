@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/08 12:56:09 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/09 10:42:43 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ char ***parse_map(int argc, char **argv)
 /*  int main() 
  {
     int argc = 2;
-    char *argv[] = {"test_program", "test_maps/42.fdf"};
+    char *argv[] = {"test_program", "test_maps/50-4.fdf"};
 
     char ***map = parse_map(argc, argv);
 	int	**intmap;
