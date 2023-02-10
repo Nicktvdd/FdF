@@ -6,12 +6,11 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/09 10:46:33 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/10 13:24:15 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -24,60 +23,60 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	}
 }
 
-void draw_line(t_data *data, int x1, int y1, int x2, int y2, int number)
+void draw_line(t_data *display_data, int start_x, int start_y, int end_x, int end_y, int color)
 {
-    int dx = x2 - x1;
-    int dy = y2 - y1;
-    int x, y, d, s1, s2;
-	
-    if (x1 < x2)
-        s1 = 1;
+    int delta_x = end_x - start_x;
+    int delta_y = end_y - start_y;
+    int current_x, current_y, error, x_step, y_step;
+
+    if (start_x < end_x)
+        x_step = 1;
     else
-        s1 = -1;
-    if (y1 < y2)
-        s2 = 1;
+        x_step = -1;
+    if (start_y < end_y)
+        y_step = 1;
     else
-        s2 = -1;
-    if (dx > dy)
+        y_step = -1;
+    if (delta_x > delta_y)
     {
-        d = 2 * dy - dx;
-        for (x = x1, y = y1; x != x2; x += s1)
+        error = 0;//2 * delta_y - delta_x;
+        for (current_x = start_x, current_y = start_y; current_x != end_x; current_x += x_step) // does this continue until next point?
         {
-            int x_iso = x - y;
-            int y_iso = (x + y) / 2;
-			if (number > 0)
-				my_mlx_pixel_put(data, x_iso, y_iso, 0xFF0000);
+            int x_iso = current_x - current_y;
+            int y_iso = (current_x + current_y) / 2;
+			if (color > 0)
+				my_mlx_pixel_put(display_data, x_iso, y_iso, 0xFF0000);
 			else
-        		my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);            
-				if (d > 0)
+        		my_mlx_pixel_put(display_data, x_iso, y_iso, 0xFFFFFF);            
+				if (error > 0)
             {
-                y += s2;
-                d -= 2 * dx;
+                current_y += y_step;
+                error -= 2 * delta_x;
             }
-            d += 2 * dy;
+            error += 2 * delta_y;
         }
     }
     else
     {
-        d = (2 * dx - dy);
-        for (x = x1, y = y1; y != y2; y += s2)
+        error = 2 * delta_x - delta_y;
+        for (current_x = start_x, current_y = start_y; current_y != end_y; current_y += y_step) // does this continue until next point?
         {
-            int x_iso = x - y;
-            int y_iso = (x + y) / 2;
-			if (number > 0)
-				my_mlx_pixel_put(data, x_iso, y_iso, 0xFF0000);
+            int x_iso = current_x - current_y;
+            int y_iso = (current_x + current_y) / 2;
+			if (color > 0)
+				my_mlx_pixel_put(display_data, x_iso, y_iso, 0xFF0000);
 			else
-        		my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);
-            if (d > 0)
+        		my_mlx_pixel_put(display_data, x_iso, y_iso, 0xFFFFFF);
+            if (error > 0)
             {
-                x += s1;
-                d -= 2 * dy;
+                current_x += x_step;
+                error -= 2 * delta_y;
             }
-            d += 2 * dx;
+            error += 2 * delta_x;
         }
     }
-	number = 0;
 }
+
 
 void    draw_grid(t_data *data, char ***map)
 {
@@ -87,7 +86,9 @@ void    draw_grid(t_data *data, char ***map)
     int j;
 	int number;
 	int nextnumber;
+	int lastnumber;
 	int lownumber;
+	int highnumber;
 
     data->x = WIDTH / 2;
     data->y = 0;
@@ -113,11 +114,19 @@ void    draw_grid(t_data *data, char ***map)
 				lownumber = (ft_atoi(map[i + 1][j]));
 			else
 				lownumber = number;
+			if (map[i][j - 1])
+				lastnumber = (ft_atoi(map[i][j - 1]));
+			else
+				lastnumber = number;
+			if (map[i - 1])
+				highnumber = (ft_atoi(map[i - 1][j]));
+			else
+				highnumber = number;
 			x_iso = data->x;
 			y_iso = data->y;
-			if (map[i][j + 1] && map[i][j])
-            	draw_line(data, x_iso - number, y_iso - number, x_iso + CELL_SIZE - nextnumber, y_iso - nextnumber, number);
-			if (map[i + 1] && map[i])
+			//if (map[i][j + 1] && map[i][j])
+            	//draw_line(data, x_iso - number, y_iso - number, x_iso + CELL_SIZE - nextnumber, y_iso - nextnumber, number); // passing argument incorrect?
+			//if (map[i + 1] && map[i])
 				draw_line(data, x_iso - number, y_iso - number, x_iso - lownumber, y_iso + CELL_SIZE - lownumber, number);
             data->x += CELL_SIZE;
         }
