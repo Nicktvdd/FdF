@@ -6,12 +6,12 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/10 13:24:15 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/10 13:36:43 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+// the problem is that i have a start and a finish. It should start at the last number, halfway arrive at the new number and then go to the next number
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -104,29 +104,29 @@ void    draw_grid(t_data *data, char ***map)
 			j++;
 			//ft_printf("%s ", map[i][j]);
 			if (map[i][j][0] != '\n')
-            	number = (ft_atoi(map[i][j]));
+            	number = (ft_atoi(map[i][j]) * 2);
 			ft_printf("%i ", number);
 			if (map[i][j + 1])
-				nextnumber = (ft_atoi(map[i][j + 1]));
+				nextnumber = (ft_atoi(map[i][j + 1]) * 2);
 			else
 				nextnumber = number;
 			if (map[i + 1])
-				lownumber = (ft_atoi(map[i + 1][j]));
+				lownumber = (ft_atoi(map[i + 1][j]) * 2);
 			else
 				lownumber = number;
 			if (map[i][j - 1])
-				lastnumber = (ft_atoi(map[i][j - 1]));
+				lastnumber = (ft_atoi(map[i][j - 1]) * 2);
 			else
 				lastnumber = number;
 			if (map[i - 1])
-				highnumber = (ft_atoi(map[i - 1][j]));
+				highnumber = (ft_atoi(map[i - 1][j]) * 2);
 			else
 				highnumber = number;
 			x_iso = data->x;
 			y_iso = data->y;
-			//if (map[i][j + 1] && map[i][j])
-            	//draw_line(data, x_iso - number, y_iso - number, x_iso + CELL_SIZE - nextnumber, y_iso - nextnumber, number); // passing argument incorrect?
-			//if (map[i + 1] && map[i])
+			if (map[i][j + 1] && map[i][j])
+            	draw_line(data, x_iso - number, y_iso - number, x_iso + CELL_SIZE - nextnumber, y_iso - nextnumber, number); // passing argument incorrect?
+			if (map[i + 1] && map[i])
 				draw_line(data, x_iso - number, y_iso - number, x_iso - lownumber, y_iso + CELL_SIZE - lownumber, number);
             data->x += CELL_SIZE;
         }
