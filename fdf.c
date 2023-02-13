@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/10 13:36:43 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/13 11:26:42 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void draw_line(t_data *display_data, int start_x, int start_y, int end_x, int en
         y_step = -1;
     if (delta_x > delta_y)
     {
-        error = 0;//2 * delta_y - delta_x;
+        error = 2 * delta_y - delta_x;
         for (current_x = start_x, current_y = start_y; current_x != end_x; current_x += x_step) // does this continue until next point?
         {
             int x_iso = current_x - current_y;
