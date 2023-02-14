@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:35:05 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/09 12:37:03 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:01:15 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 #define WIDTH 1920
 #define HEIGHT 1080
-#define CELL_SIZE 50
+#define CELL_SIZE 3
 
 typedef struct s_data
 {
@@ -35,7 +35,9 @@ typedef struct s_data
 }			t_data;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	draw_grid(t_data *data, char ***map);
+void	plot_line_high(t_data *display_data, int start_x, int start_y, int end_x, int end_y);
+void	plot_line_low(t_data *display_data, int start_x, int start_y, int end_x, int end_y);
+void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y);
 int		key_press_exit(int key);
 int		close_window();
 int		main(int argc, char **argv);
