@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/14 13:03:03 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/14 13:22:35 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,27 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	}
 }
 
-void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y)
+void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y, int color)
 {
 	if (abs(end_y - start_y) > abs(end_x - start_x))
 	{
 		//if (start_x > end_x)
-			plot_line_low(data, end_x, end_y, start_x, start_y);
+			plot_line_low(data, end_x, end_y, start_x, start_y, color);
 		//else
-			plot_line_low(data, start_x, start_y, end_x, end_y);
+			plot_line_low(data, start_x, start_y, end_x, end_y, color);
 	}
 	else 
 	{
 		//if (start_y > end_y)
-			plot_line_high(data, end_x, end_y, start_x, start_y);
+			plot_line_high(data, end_x, end_y, start_x, start_y, color);
 		//else
-			plot_line_high(data, start_x, start_y, end_x, end_y);
+			plot_line_high(data, start_x, start_y, end_x, end_y, color);
 	}
 	
 
 }
 
-void	plot_line_high(t_data *display_data, int start_x, int start_y, int end_x, int end_y)
+void	plot_line_high(t_data *display_data, int start_x, int start_y, int end_x, int end_y, int color)
 {
 	int delta_x = end_x - start_x;
     int delta_y = end_y - start_y;
@@ -63,7 +63,10 @@ void	plot_line_high(t_data *display_data, int start_x, int start_y, int end_x, i
 	{
 		int x_iso = current_x - current_y;
         int y_iso = (current_x + current_y) / 2;
-        my_mlx_pixel_put(display_data, x_iso, y_iso, 0xFFFFFF);
+		if (color > 0)
+			my_mlx_pixel_put(display_data, x_iso, y_iso, 0xFF0000);
+		else
+        	my_mlx_pixel_put(display_data, x_iso, y_iso, 0xFFFFFF);          
 		if (error > 0)
         {
         	current_y += y_step;
@@ -74,7 +77,7 @@ void	plot_line_high(t_data *display_data, int start_x, int start_y, int end_x, i
 	}
 }
 
-void	plot_line_low(t_data *display_data, int start_x, int start_y, int end_x, int end_y)
+void	plot_line_low(t_data *display_data, int start_x, int start_y, int end_x, int end_y, int color)
 {
     int delta_x = end_x - start_x;
     int delta_y = end_y - start_y;
@@ -94,7 +97,10 @@ void	plot_line_low(t_data *display_data, int start_x, int start_y, int end_x, in
 	{
 		int x_iso = current_x - current_y;
         int y_iso = (current_x + current_y) / 2;
-        my_mlx_pixel_put(display_data, x_iso, y_iso, 0xFFFFFF);
+		if (color > 0)
+			my_mlx_pixel_put(display_data, x_iso, y_iso, 0xFF0000);
+		else
+        	my_mlx_pixel_put(display_data, x_iso, y_iso, 0xFFFFFF);          
 		if (error > 0)
         {
         	current_x += x_step;
@@ -115,8 +121,6 @@ void    draw_grid(t_data *data, char ***map)
 	int number;
 	int nextnumber;
 	int lownumber;
-	int	lastnumber;
-	int	highnumber;
 
     data->x = WIDTH / 2;
     data->y = 0;
@@ -142,20 +146,12 @@ void    draw_grid(t_data *data, char ***map)
 				lownumber = (ft_atoi(map[i + 1][j]));
 			else
 				lownumber = number;
-			if (map[i][j - 1])
-				lastnumber = (ft_atoi(map[i][j - 1]));
-			else
-				lastnumber = number;
-			if (map[i - 1])
-				highnumber = (ft_atoi(map[i - 1][j]));
-			else
-				highnumber = number;
 			x_iso = data->x;
 			y_iso = data->y;
 			if (map[i][j + 1] && map[i][j])
-            	plot_line(data, x_iso - number, y_iso - number, x_iso + CELL_SIZE - nextnumber, y_iso - nextnumber); // passing argument incorrect?
+            	plot_line(data, x_iso - number, y_iso - number, x_iso + CELL_SIZE - nextnumber, y_iso - nextnumber, number); // passing argument incorrect?
 			if (map[i + 1] && map[i])
-				plot_line(data, x_iso - number, y_iso - number, x_iso - lownumber, y_iso + CELL_SIZE - lownumber);
+				plot_line(data, x_iso - number, y_iso - number, x_iso - lownumber, y_iso + CELL_SIZE - lownumber, number);
             data->x += CELL_SIZE;
         }
         j = 0;
