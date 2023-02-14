@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/14 14:47:04 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:00:57 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y, int
 	}
 }
 
-void	plot_line_high(t_data *display_data, int start_x, int start_y, int end_x, int end_y, int color)
+void	plot_line_high(t_data *data, int start_x, int start_y, int end_x, int end_y, int color)
 {
 	int delta_x = end_x - start_x;
     int delta_y = end_y - start_y;
@@ -58,9 +58,9 @@ void	plot_line_high(t_data *display_data, int start_x, int start_y, int end_x, i
 		int x_iso = current_x - current_y;
         int y_iso = (current_x + current_y) / 2;
 		if (color > 0)
-			my_mlx_pixel_put(display_data, x_iso, y_iso, 0xFF0000);
+			my_mlx_pixel_put(data, x_iso, y_iso, 0xFF0000);
 		else
-        	my_mlx_pixel_put(display_data, x_iso, y_iso, 0xFFFFFF);          
+        	my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);          
 		if (error > 0)
         {
         	current_y += y_step;
@@ -71,7 +71,7 @@ void	plot_line_high(t_data *display_data, int start_x, int start_y, int end_x, i
 	}
 }
 
-void	plot_line_low(t_data *display_data, int start_x, int start_y, int end_x, int end_y, int color)
+void	plot_line_low(t_data *data, int start_x, int start_y, int end_x, int end_y, int color)
 {
     int delta_x = end_x - start_x;
     int delta_y = end_y - start_y;
@@ -84,44 +84,43 @@ void	plot_line_low(t_data *display_data, int start_x, int start_y, int end_x, in
 		x_step = -1;
 		delta_x *= -1;
 	}
-    error = 2 * delta_x - delta_y;
+	error = 2 * delta_x - delta_y;
 	current_x = start_x;
 	current_y = start_y;
 	while (current_y++ < end_y)
 	{
 		int x_iso = current_x - current_y;
-        int y_iso = (current_x + current_y) / 2;
+		int y_iso = (current_x + current_y) / 2;
 		if (color > 0)
-			my_mlx_pixel_put(display_data, x_iso, y_iso, 0xFF0000);
+			my_mlx_pixel_put(data, x_iso, y_iso, 0xFF0000);
 		else
-        	my_mlx_pixel_put(display_data, x_iso, y_iso, 0xFFFFFF);          
+			my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);
 		if (error > 0)
-        {
-        	current_x += x_step;
-            error += 2 * (delta_x - delta_y);
-        }
+		{
+			current_x += x_step;
+			error += 2 * (delta_x - delta_y);
+		}
 		else
-        	error += 2 * delta_x;
+			error += 2 * delta_x;
 	}
 }
 
-
-void    draw_grid(t_data *data, char ***map)
+void	draw_grid(t_data *data, char ***map)
 {
 	data->x = WIDTH / 2;
-    data->y = 0;
-    while (map[++data->i])
-    {
-        while (map[data->i][++data->j])
-        {
+	data->y = 0;
+	while (map[++data->i])
+	{
+		while (map[data->i][++data->j])
+		{
 			if (map[data->i][data->j][0] != '\n')
-            	data->nr = (ft_atoi(map[data->i][data->j]));
+			data->nr = (ft_atoi(map[data->i][data->j]));
 			if (map[data->i][data->j + 1])
 				data->nxtnr = (ft_atoi(map[data->i][data->j + 1]));
 			if (map[data->i + 1])
 				data->lownr = (ft_atoi(map[data->i + 1][data->j]));
 			if (map[data->i][data->j + 1] && map[data->i][data->j])
-            	plot_line(data, data->x - data->nr, data->y - data->nr, data->x
+				plot_line(data, data->x - data->nr, data->y - data->nr, data->x
 					+ CELL_SIZE - data->nxtnr, data->y - data->nxtnr, data->nr);
 			if (map[data->i + 1] && map[data->i])
 				plot_line(data, data->x - data->nr, data->y - data->nr, data->x
