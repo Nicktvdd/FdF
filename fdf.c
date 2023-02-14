@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/14 15:10:22 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:33:25 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,69 +39,67 @@ void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y, int
 
 void	plot_line_high(t_data *data, int start_x, int start_y, int end_x, int end_y, int color)
 {
-	int delta_x = end_x - start_x;
-    int delta_y = end_y - start_y;
-    int current_x, current_y, error, y_step;
+	t_plot	plot;
 
-	y_step = 1;
-	if (delta_y < 0)
+	plot.delta_x = end_x - start_x;
+    plot.delta_y = end_y - start_y;
+	plot.step = 1;
+	if (plot.delta_y < 0)
 	{
-		y_step = -1;
-		delta_y *= -1;
+		plot.step = -1;
+		plot.delta_y *= -1;
 	}
-	error = 2 * delta_y - delta_x;
-	current_x = start_x;
-	current_y = start_y;
-	while (current_x++ < end_x)
+	plot.error = 2 * plot.delta_y - plot.delta_x;
+	plot.current_x = start_x;
+	plot.current_y = start_y;
+	while (plot.current_x++ < end_x)
 	{
-		int x_iso = current_x - current_y;
-        int y_iso = (current_x + current_y) / 2;
+		int x_iso = plot.current_x - plot.current_y;
+        int y_iso = (plot.current_x + plot.current_y) / 2;
 		if (color > 0)
 			my_mlx_pixel_put(data, x_iso, y_iso, 0xFF0000);
 		else
         	my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);          
-		if (error > 0)
+		if (plot.error > 0)
         {
-        	current_y += y_step;
-            error += 2 * (delta_y - delta_x);
+        	plot.current_y += plot.step;
+            plot.error += 2 * (plot.delta_y - plot.delta_x);
         }
 		else
-        	error += 2 * delta_y;
+        	plot.error += 2 * plot.delta_y;
 	}
 }
 
 void	plot_line_low(t_data *data, int start_x, int start_y, int end_x, int end_y, int color)
 {
-    int delta_x = end_x - start_x;
-    int delta_y = end_y - start_y;
-    int current_x, current_y, error, x_step;
-	//t_data	low;
+	t_plot	plot;
 
-
-	x_step = 1;
-	if (delta_x < 0)
+	plot.delta_x = end_x - start_x;
+	plot.delta_y = end_y - start_y;
+	plot.step = 1;
+	if (plot.delta_x < 0)
 	{
-		x_step = -1;
-		delta_x *= -1;
+		plot.step = -1;
+		plot.delta_x *= -1;
 	}
-	error = 2 * delta_x - delta_y;
-	current_x = start_x;
-	current_y = start_y;
-	while (current_y++ < end_y)
+	plot.error = 2 * plot.delta_x - plot.delta_y;
+	plot.current_x = start_x;
+	plot.current_y = start_y;
+	while (plot.current_y++ < end_y)
 	{
-		int x_iso = current_x - current_y;
-		int y_iso = (current_x + current_y) / 2;
+		plot.x_iso = plot.current_x - plot.current_y;
+		plot.y_iso = (plot.current_x + plot.current_y) / 2;
 		if (color > 0)
-			my_mlx_pixel_put(data, x_iso, y_iso, 0xFF0000);
+			my_mlx_pixel_put(data, plot.x_iso, plot.y_iso, 0xFF0000);
 		else
-			my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);
-		if (error > 0)
+			my_mlx_pixel_put(data, plot.x_iso, plot.y_iso, 0xFFFFFF);
+		if (plot.error > 0)
 		{
-			current_x += x_step;
-			error += 2 * (delta_x - delta_y);
+			plot.current_x += plot.step;
+			plot.error += 2 * (plot.delta_x - plot.delta_y);
 		}
 		else
-			error += 2 * delta_x;
+			plot.error += 2 * plot.delta_x;
 	}
 }
 
