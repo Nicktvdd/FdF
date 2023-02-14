@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/14 15:33:25 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/14 15:44:49 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	if (x > 0 && x < WIDTH && y > 0 && y < HEIGHT)
 	{
-		dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-		*(unsigned int*)dst = color;
+		dst = data->addr + (y * data->line_length + x
+				* (data->bits_per_pixel / 8));
+		*(unsigned int *)dst = color;
 	}
 }
 
@@ -27,13 +28,13 @@ void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y, int
 {
 	if (abs(end_y - start_y) > abs(end_x - start_x))
 	{
-			plot_line_low(data, end_x, end_y, start_x, start_y, color);
-			plot_line_low(data, start_x, start_y, end_x, end_y, color);
+		plot_line_low(data, end_x, end_y, start_x, start_y, color);
+		plot_line_low(data, start_x, start_y, end_x, end_y, color);
 	}
-	else 
+	else
 	{
-			plot_line_high(data, end_x, end_y, start_x, start_y, color);
-			plot_line_high(data, start_x, start_y, end_x, end_y, color);
+		plot_line_high(data, end_x, end_y, start_x, start_y, color);
+		plot_line_high(data, start_x, start_y, end_x, end_y, color);
 	}
 }
 
@@ -42,7 +43,7 @@ void	plot_line_high(t_data *data, int start_x, int start_y, int end_x, int end_y
 	t_plot	plot;
 
 	plot.delta_x = end_x - start_x;
-    plot.delta_y = end_y - start_y;
+	plot.delta_y = end_y - start_y;
 	plot.step = 1;
 	if (plot.delta_y < 0)
 	{
@@ -54,19 +55,19 @@ void	plot_line_high(t_data *data, int start_x, int start_y, int end_x, int end_y
 	plot.current_y = start_y;
 	while (plot.current_x++ < end_x)
 	{
-		int x_iso = plot.current_x - plot.current_y;
-        int y_iso = (plot.current_x + plot.current_y) / 2;
+		plot.x_iso = plot.current_x - plot.current_y;
+		plot.y_iso = (plot.current_x + plot.current_y) / 2;
 		if (color > 0)
-			my_mlx_pixel_put(data, x_iso, y_iso, 0xFF0000);
+			my_mlx_pixel_put(data, plot.x_iso, plot.y_iso, 0xFF0000);
 		else
-        	my_mlx_pixel_put(data, x_iso, y_iso, 0xFFFFFF);          
+			my_mlx_pixel_put(data, plot.x_iso, plot.y_iso, 0xFFFFFF);
 		if (plot.error > 0)
-        {
-        	plot.current_y += plot.step;
-            plot.error += 2 * (plot.delta_y - plot.delta_x);
-        }
+		{
+			plot.current_y += plot.step;
+			plot.error += 2 * (plot.delta_y - plot.delta_x);
+		}
 		else
-        	plot.error += 2 * plot.delta_y;
+			plot.error += 2 * plot.delta_y;
 	}
 }
 
