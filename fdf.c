@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/14 13:45:24 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/14 14:47:04 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,64 +108,45 @@ void	plot_line_low(t_data *display_data, int start_x, int start_y, int end_x, in
 
 void    draw_grid(t_data *data, char ***map)
 {
-    int x_iso;
-    int y_iso;
-    int i;
-    int j;
-	int number;
-	int nextnumber;
-	int lownumber;
-
-    data->x = WIDTH / 2;
+	data->x = WIDTH / 2;
     data->y = 0;
-    i = 0;
-    j = 0;
-    if (!map)
-        return;
-    while (map[i + 1])
+    while (map[++data->i])
     {
-		i++;
-        while (map[i][j + 1])
+        while (map[data->i][++data->j])
         {
-			j++;
-			if (map[i][j][0] != '\n')
-            	number = (ft_atoi(map[i][j]));
-			if (map[i][j + 1])
-				nextnumber = (ft_atoi(map[i][j + 1]));
-			else
-				nextnumber = number;
-			if (map[i + 1])
-				lownumber = (ft_atoi(map[i + 1][j]));
-			else
-				lownumber = number;
-			x_iso = data->x;
-			y_iso = data->y;
-			if (map[i][j + 1] && map[i][j])
-            	plot_line(data, x_iso - number, y_iso - number, x_iso + CELL_SIZE - nextnumber, y_iso - nextnumber, number);
-			if (map[i + 1] && map[i])
-				plot_line(data, x_iso - number, y_iso - number, x_iso - lownumber, y_iso + CELL_SIZE - lownumber, number);
-            data->x += CELL_SIZE;
-        }
-        j = 0;
-        data->x = WIDTH / 2;
-        data->y += CELL_SIZE;
-    }
+			if (map[data->i][data->j][0] != '\n')
+            	data->nr = (ft_atoi(map[data->i][data->j]));
+			if (map[data->i][data->j + 1])
+				data->nxtnr = (ft_atoi(map[data->i][data->j + 1]));
+			if (map[data->i + 1])
+				data->lownr = (ft_atoi(map[data->i + 1][data->j]));
+			if (map[data->i][data->j + 1] && map[data->i][data->j])
+            	plot_line(data, data->x - data->nr, data->y - data->nr, data->x
+					+ CELL_SIZE - data->nxtnr, data->y - data->nxtnr, data->nr);
+			if (map[data->i + 1] && map[data->i])
+				plot_line(data, data->x - data->nr, data->y - data->nr, data->x
+					- data->lownr, data->y + CELL_SIZE - data->lownr, data->nr);
+			data->x += CELL_SIZE;
+		}
+		data->j = 0;
+		data->x = WIDTH / 2;
+		data->y += CELL_SIZE;
+	}
 }
-
 
 int	key_press_exit(int key)
 {
 	if (key == 53 || key == 17)
 		exit(0);
-	return(0);
+	return (0);
 }
 
-int	close_window()
+int	close_window(void)
 {
 	exit(0);
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	void	*mlx;
 	void	*mlx_win;
@@ -174,7 +155,7 @@ int		main(int argc, char **argv)
 
 	map = parse_map(argc, argv);
 	if (!map)
-		return(1);
+		return (1);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "Grid_FDF");
 	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);

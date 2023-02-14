@@ -33,3 +33,28 @@ test:
 	rm -f $(NAME)
 	make all
 	./fdf test_maps/42.fdf
+
+test100:
+	rm -f $(NAME)
+	make all
+	./fdf test_maps/100-6.fdf
+
+test10:
+	rm -f $(NAME)
+	make all
+	./fdf test_maps/10-70.fdf
+
+testelem:
+	rm -f $(NAME)
+	make all
+	./fdf test_maps/elem.fdf
+
+testmars:
+	rm -f $(NAME)
+	make all
+	./fdf test_maps/mars.fdf
+
+testpylone:
+	rm -f $(NAME)
+	make all
+	./fdf test_maps/pylone.fdf

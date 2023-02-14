@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:35:05 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/14 13:25:21 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/14 14:45:09 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 #define WIDTH 1920
 #define HEIGHT 1080
-#define CELL_SIZE 10
+#define CELL_SIZE 30
 
 typedef struct s_data
 {
@@ -27,11 +27,16 @@ typedef struct s_data
 	void	*window;
 	void	*img;
 	char	*addr;
-	int		x;
-	int		y;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		x;
+	int		y;
+	int		i;
+	int		j;
+	int		nr;
+	int		nxtnr;
+	int		lownr;
 }			t_data;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
