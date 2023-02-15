@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/15 11:08:00 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:16:08 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@ void ft_strsplit_free(char ***strs)
 		i++;
 	}
 	free(strs);
-}
-
-size_t ft_strlen_2d(char **strs)
-{
-	size_t len = 0;
-	while (strs[len])
-		len++;
-	return len;
 }
 
 size_t ft_strlen_3d(char ***str)
@@ -97,23 +89,11 @@ int	openfdf(char **argv)
 	return (fd);
 }
 
-char ***parse_map(int argc, char **argv)
+char ***create_array(int fd, char ***map)
 {
-	int fd;
-	int i;
-	char *line;
-	char ***map;
+	int		i;
+	char	*line;
 
-	if (argc == 0)
-		return (0);
-	fd = openfdf(argv);
-	map = malloc(sizeof(char **) * count_lines(fd));
-	if (!map)
-		return (NULL);
-	close(fd);
-	fd = open(argv[1], O_RDONLY);
-	if (!fd)
-		return (NULL);
 	i = 0;
 	while ((line = get_next_line(fd)))
 	{
@@ -123,6 +103,23 @@ char ***parse_map(int argc, char **argv)
 		free(line);
 	}
 	map[i] = NULL;
+	return (map);
+}
+
+char ***parse_map(int argc, char **argv)
+{
+	int fd;
+	char ***map;
+
+	if (argc == 0)
+		return (0);
+	fd = openfdf(argv);
+	map = malloc(sizeof(char **) * count_lines(fd));
+	if (!map)
+		return (NULL);
+	close(fd);
+	fd = openfdf(argv);
+	map = create_array(fd, map);
 	close(fd);
 	return (map);
 }
