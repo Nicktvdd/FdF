@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/15 11:16:08 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/15 11:20:48 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,17 @@ char ***create_array(int fd, char ***map)
 	char	*line;
 
 	i = 0;
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		map[i] = ft_split(line, ' ');
 		if (!map[i++])
 			return (NULL);
 		free(line);
+		line = get_next_line(fd);
 	}
+	if (line)
+		free(line);
 	map[i] = NULL;
 	return (map);
 }
