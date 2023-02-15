@@ -6,36 +6,19 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/15 11:20:48 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/15 12:25:17 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft/libft.h"
 // PROTECT ALL MALLOCS
-void ft_strsplit_free(char ***strs)
+size_t	ft_strlen_3d(char ***str)
 {
-	int i = 0;
-	while (strs[i])
-	{
-		int j = 0;
-		while (strs[i][j])
-		{
-			free(strs[i][j]);
-			j++;
-		}
-		free(strs[i]);
-		i++;
-	}
-	free(strs);
-}
-
-size_t ft_strlen_3d(char ***str)
-{
-	size_t i;
-	size_t j;
-	size_t k;
-	size_t len;
+	size_t	i;
+	size_t	j;
+	size_t	k;
+	size_t	len;
 
 	i = 0;
 	j = 0;
@@ -59,10 +42,10 @@ size_t ft_strlen_3d(char ***str)
 	return (len);
 }
 
-int count_lines(int fd)
+int	count_lines(int fd)
 {
-	char *line;
-	int count;
+	char	*line;
+	int		count;
 
 	count = 0;
 	line = get_next_line(fd);
@@ -89,7 +72,7 @@ int	openfdf(char **argv)
 	return (fd);
 }
 
-char ***create_array(int fd, char ***map)
+char	***create_array(int fd, char ***map)
 {
 	int		i;
 	char	*line;
@@ -110,10 +93,10 @@ char ***create_array(int fd, char ***map)
 	return (map);
 }
 
-char ***parse_map(int argc, char **argv)
+char	***parse_map(int argc, char **argv)
 {
-	int fd;
-	char ***map;
+	int		fd;
+	char	***map;
 
 	if (argc == 0)
 		return (0);
