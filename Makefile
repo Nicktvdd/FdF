@@ -1,5 +1,5 @@
 NAME = fdf
-SRCS = fdf.c parse_map.c
+SRCS = fdf.c parse_map.c fdf_utils.c
 OBJS = $(SRCS:.c=.o)
 
 LIBMLX = minilibx_macos/libmlx.a

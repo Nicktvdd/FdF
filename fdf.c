@@ -6,23 +6,11 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/14 15:44:49 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:23:30 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	if (x > 0 && x < WIDTH && y > 0 && y < HEIGHT)
-	{
-		dst = data->addr + (y * data->line_length + x
-				* (data->bits_per_pixel / 8));
-		*(unsigned int *)dst = color;
-	}
-}
 
 void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y, int color)
 {
@@ -130,18 +118,6 @@ void	draw_grid(t_data *data, char ***map)
 		data->x = WIDTH / 2;
 		data->y += CELL_SIZE;
 	}
-}
-
-int	key_press_exit(int key)
-{
-	if (key == 53 || key == 17)
-		exit(0);
-	return (0);
-}
-
-int	close_window(void)
-{
-	exit(0);
 }
 
 int	main(int argc, char **argv)

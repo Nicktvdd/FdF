@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:35:05 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/15 12:54:34 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:02:01 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	// break it here
+	//break it here
 	int		x;
 	int		y;
 	int		i;
@@ -52,6 +52,14 @@ typedef struct s_plot
 	int	x_iso;
 	int	y_iso;
 }			t_plot;
+
+typedef	struct	s_arg
+{
+	int	start_x;
+	int	start_y;
+	int	end_x;
+	int	end_y;
+}			t_arg;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	plot_line_high(t_data *data, int start_x, int start_y, int end_x, int end_y, int color);
