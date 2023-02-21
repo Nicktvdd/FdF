@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/21 13:23:30 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/21 13:26:25 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ void	plot_line_low(t_data *data, int start_x, int start_y, int end_x, int end_y,
 
 void	draw_grid(t_data *data, char ***map)
 {
-	data->x = WIDTH / 2;
 	data->y = 0;
 	while (map[++data->i])
 	{
+		data->x = WIDTH / 2;
 		while (map[data->i][++data->j])
 		{
 			if (map[data->i][data->j][0] != '\n')
@@ -115,7 +115,6 @@ void	draw_grid(t_data *data, char ***map)
 			data->x += CELL_SIZE;
 		}
 		data->j = 0;
-		data->x = WIDTH / 2;
 		data->y += CELL_SIZE;
 	}
 }
