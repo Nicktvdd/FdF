@@ -44,6 +44,11 @@ test10:
 	make all
 	./fdf test_maps/10-70.fdf
 
+test20:
+	rm -f $(NAME)
+	make all
+	./fdf test_maps/20-60.fdf
+
 testelem:
 	rm -f $(NAME)
 	make all
