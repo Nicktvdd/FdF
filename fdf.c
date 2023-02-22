@@ -6,13 +6,13 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/21 15:44:59 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/22 11:08:59 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y, int color)
+void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y)
 {
 /* 	t_arg	arg;
 
@@ -22,17 +22,17 @@ void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y, int
 	arg.end_y = data->y - data->nxtnr; */
 	if (abs(end_y - start_y) > abs(end_x - start_x))
 	{
-		plot_line_low(data, end_x, end_y, start_x, start_y, color);
-		plot_line_low(data, start_x, start_y, end_x, end_y, color);
+		plot_line_low(data, end_x, end_y, start_x, start_y);
+		plot_line_low(data, start_x, start_y, end_x, end_y);
 	}
 	else
 	{
-		plot_line_high(data, end_x, end_y, start_x, start_y, color);
-		plot_line_high(data, start_x, start_y, end_x, end_y, color);
+		plot_line_high(data, end_x, end_y, start_x, start_y);
+		plot_line_high(data, start_x, start_y, end_x, end_y);
 	}
 }
 
-void	plot_line_high(t_data *data, int start_x, int start_y, int end_x, int end_y, int color)
+void	plot_line_high(t_data *data, int start_x, int start_y, int end_x, int end_y)
 {
 	t_plot	plot;
 
@@ -51,7 +51,7 @@ void	plot_line_high(t_data *data, int start_x, int start_y, int end_x, int end_y
 	{
 		plot.x_iso = plot.current_x - plot.current_y;
 		plot.y_iso = (plot.current_x + plot.current_y) / 2;
-		if (color > 0)
+		if (data->nr > 0)
 			my_mlx_pixel_put(data, plot.x_iso, plot.y_iso, 0xFF0000);
 		else
 			my_mlx_pixel_put(data, plot.x_iso, plot.y_iso, 0xFFFFFF);
@@ -65,7 +65,7 @@ void	plot_line_high(t_data *data, int start_x, int start_y, int end_x, int end_y
 	}
 }
 
-void	plot_line_low(t_data *data, int start_x, int start_y, int end_x, int end_y, int color)
+void	plot_line_low(t_data *data, int start_x, int start_y, int end_x, int end_y)
 {
 	t_plot	plot;
 
@@ -84,7 +84,7 @@ void	plot_line_low(t_data *data, int start_x, int start_y, int end_x, int end_y,
 	{
 		plot.x_iso = plot.current_x - plot.current_y;
 		plot.y_iso = (plot.current_x + plot.current_y) / 2;
-		if (color > 0)
+		if (data->nr > 0)
 			my_mlx_pixel_put(data, plot.x_iso, plot.y_iso, 0xFF0000);
 		else
 			my_mlx_pixel_put(data, plot.x_iso, plot.y_iso, 0xFFFFFF);
@@ -114,10 +114,10 @@ void	draw_grid(t_data *data, char ***map)
 				data->lownr = (ft_atoi(map[data->i + 1][data->j]));
 			if (map[data->i][data->j + 1] && map[data->i][data->j])
 				plot_line(data, data->x - data->nr, data->y - data->nr, data->x
-					+ CELL_SIZE - data->nxtnr, data->y - data->nxtnr, data->nr); // plot high
+					+ CELL_SIZE - data->nxtnr, data->y - data->nxtnr); // plot high
 			if (map[data->i + 1] && map[data->i])
 				plot_line(data, data->x - data->nr, data->y - data->nr, data->x
-					- data->lownr, data->y + CELL_SIZE - data->lownr, data->nr); // plot low
+					- data->lownr, data->y + CELL_SIZE - data->lownr); // plot low
 			data->x += CELL_SIZE;
 		}
 		data->j = 0;

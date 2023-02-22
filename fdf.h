@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:35:05 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/21 15:41:12 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/22 11:09:57 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ typedef	struct	s_arg
 }			t_arg;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	plot_line_high(t_data *data, int start_x, int start_y, int end_x, int end_y, int color);
-void	plot_line_low(t_data *data, int start_x, int start_y, int end_x, int end_y, int color);
-void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y, int color);
+void	plot_line_high(t_data *data, int start_x, int start_y, int end_x, int end_y);
+void	plot_line_low(t_data *data, int start_x, int start_y, int end_x, int end_y);
+void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y);
 int		key_press_exit(int key);
 int		close_window(void);
 int		main(int argc, char **argv);
