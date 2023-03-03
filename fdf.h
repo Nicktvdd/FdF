@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:35:05 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/22 12:35:51 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:17:40 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ typedef struct s_plot
 	int	y_iso;
 }			t_plot;
 
-typedef	struct	s_arg
-{
-	int	start_x;
-	int	start_y;
-	int	end_x;
-	int	end_y;
-}			t_arg;
+typedef struct	s_line {
+	int start_x;
+	int start_y;
+	int end_x;
+	int end_y;
+}				t_line;
+
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	plot_line_high(t_data *data, int start_x, int start_y, int end_x, int end_y);

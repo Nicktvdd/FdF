@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/22 14:39:32 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/03 12:17:27 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 
 void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y)
 {
-/* 	t_arg	arg;
-	arg.start_x = data->x - data->nr;
-	arg.start_y = data->y - data->nr;
-	arg.end_x = data->x - data->nxtnr;
-	arg.end_y = data->y - data->nxtnr; */
-
 	if (abs(end_y - start_y) > abs(end_x - start_x))
 	{
 		plot_line_low(data, end_x, end_y, start_x, start_y);
