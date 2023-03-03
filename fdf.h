@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:35:05 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/22 15:17:40 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/03 13:41:57 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct s_plot
 	int	step;
 	int	x_iso;
 	int	y_iso;
+	int	end_x;
+	int	end_y;
 }			t_plot;
 
 typedef struct	s_line {
@@ -62,8 +64,8 @@ typedef struct	s_line {
 
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	plot_line_high(t_data *data, int start_x, int start_y, int end_x, int end_y);
-void	plot_line_low(t_data *data, int start_x, int start_y, int end_x, int end_y);
+void	plot_line_high(t_data *data, int start_x, int start_y, t_plot plot);
+void	plot_line_low(t_data *data, int start_x, int start_y, t_plot plot);
 void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y);
 int		key_press_exit(int key);
 int		close_window(void);
