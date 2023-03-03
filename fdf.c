@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/03 13:42:24 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/03 14:42:13 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,42 +22,25 @@ void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y)
 	plot.end_y = end_y;
 	if (abs(end_y - start_y) > abs(end_x - start_x))
 	{
-		plot_line_low(data, start_x, start_y, plot);
+		plot.delta_x = start_x - end_x;
+		plot.delta_y = start_y - end_y;
+		plot.end_y = start_y;
 		plot_line_low(data, end_x, end_y, plot);
+		plot.delta_x = end_x - start_x;
+		plot.delta_y = end_y - start_y;
+		plot.end_y = end_y;
+		plot_line_low(data, start_x, start_y, plot);
 	}
 	else
 	{
-		plot_line_high(data, start_x, start_y, plot);
+		plot.delta_x = start_x - end_x;
+		plot.delta_y = start_y - end_y;
+		plot.end_y = start_x;
 		plot_line_high(data, end_x, end_y, plot);
-	}
-}
-
-void	plot_line_high(t_data *data, int start_x, int start_y, t_plot plot)
-{
-	plot.step = 1;
-	if (plot.delta_y < 0)
-	{
-		plot.step = -1;
-		plot.delta_y *= -1;
-	}
-	plot.error = 2 * plot.delta_y - plot.delta_x;
-	plot.current_x = start_x;
-	plot.current_y = start_y;
-	while (plot.current_x++ < plot.end_x)
-	{
-		plot.x_iso = plot.current_x - plot.current_y;
-		plot.y_iso = (plot.current_x + plot.current_y) / 2;
-		if (data->nr > 0)
-			my_mlx_pixel_put(data, plot.x_iso, plot.y_iso, 0xFF0000);
-		else
-			my_mlx_pixel_put(data, plot.x_iso, plot.y_iso, 0xFFFFFF);
-		if (plot.error > 0)
-		{
-			plot.current_y += plot.step;
-			plot.error += 2 * (plot.delta_y - plot.delta_x);
-		}
-		else
-			plot.error += 2 * plot.delta_y;
+		plot.delta_x = end_x - start_x;
+		plot.delta_y = end_y - start_y;
+		plot.end_y = end_y;
+		plot_line_high(data, start_x, start_y, plot);
 	}
 }
 
@@ -87,6 +70,35 @@ void	plot_line_low(t_data *data, int start_x, int start_y, t_plot plot)
 		}
 		else
 			plot.error += 2 * plot.delta_x;
+	}
+}
+
+void	plot_line_high(t_data *data, int start_x, int start_y, t_plot plot)
+{
+	plot.step = 1;
+	if (plot.delta_y < 0)
+	{
+		plot.step = -1;
+		plot.delta_y *= -1;
+	}
+	plot.error = 2 * plot.delta_y - plot.delta_x;
+	plot.current_x = start_x;
+	plot.current_y = start_y;
+	while (plot.current_x++ < plot.end_x)
+	{
+		plot.x_iso = plot.current_x - plot.current_y;
+		plot.y_iso = (plot.current_x + plot.current_y) / 2;
+		if (data->nr > 0)
+			my_mlx_pixel_put(data, plot.x_iso, plot.y_iso, 0xFF0000);
+		else
+			my_mlx_pixel_put(data, plot.x_iso, plot.y_iso, 0xFFFFFF);
+		if (plot.error > 0)
+		{
+			plot.current_y += plot.step;
+			plot.error += 2 * (plot.delta_y - plot.delta_x);
+		}
+		else
+			plot.error += 2 * plot.delta_y;
 	}
 }
 
