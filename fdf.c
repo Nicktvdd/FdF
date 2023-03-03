@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/03 15:21:48 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/03 15:47:15 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y)
 	}
 	else
 	{
-
 		plot_line_high(data, end_x, end_y, plot);
 		plot.delta_x = end_x - start_x;
 		plot.delta_y = end_y - start_y;
@@ -105,18 +104,18 @@ void	draw_grid(t_data *data, char ***map)
 		data->x = WIDTH / 2;
 		while (map[data->i][++data->j])
 		{
-			if (map[data->i][data->j][0] != '\n')
+			if (map[data->i][data->j])
 				data->nr = (ft_atoi(map[data->i][data->j]));
-			if (map[data->i][data->j + 1]) // should also check if not '\n'
+			if (map[data->i][data->j + 1])
 				data->nxtnr = (ft_atoi(map[data->i][data->j + 1]));
 			if (map[data->i + 1])
 				data->lownr = (ft_atoi(map[data->i + 1][data->j]));
 			if (map[data->i][data->j + 1] && map[data->i][data->j])
 				plot_line(data, data->x - data->nr, data->y - data->nr, data->x
-					+ CELL_SIZE - data->nxtnr, data->y - data->nxtnr); // plot high
+					+ CELL_SIZE - data->nxtnr, data->y - data->nxtnr);
 			if (map[data->i + 1] && map[data->i])
 				plot_line(data, data->x - data->nr, data->y - data->nr, data->x
-					- data->lownr, data->y + CELL_SIZE - data->lownr); // plot low
+					- data->lownr, data->y + CELL_SIZE - data->lownr);
 			data->x += CELL_SIZE;
 		}
 		data->j = 0;
