@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/03 14:42:13 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/03 14:50:20 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,6 @@ void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y)
 {
 	t_plot	plot;
 	
-	plot.delta_x = end_x - start_x;
-	plot.delta_y = end_y - start_y;
-	plot.end_x = end_x;
-	plot.end_y = end_y;
 	if (abs(end_y - start_y) > abs(end_x - start_x))
 	{
 		plot.delta_x = start_x - end_x;
@@ -35,11 +31,11 @@ void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y)
 	{
 		plot.delta_x = start_x - end_x;
 		plot.delta_y = start_y - end_y;
-		plot.end_y = start_x;
+		plot.end_x = start_x;
 		plot_line_high(data, end_x, end_y, plot);
 		plot.delta_x = end_x - start_x;
 		plot.delta_y = end_y - start_y;
-		plot.end_y = end_y;
+		plot.end_x = end_x;
 		plot_line_high(data, start_x, start_y, plot);
 	}
 }
