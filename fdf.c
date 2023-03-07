@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 15:26:22 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:28:57 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,10 @@ void	draw_grid(t_data *data, char ***map)
 				plot_y(data, gridsize);
 			if (map[data->i + 1] && map[data->i])
 				plot_x(data, gridsize);
-			data->x += (gridsize);
+			data->x += gridsize;
 		}
 		data->j = 0;
-		data->y += (gridsize);
+		data->y += gridsize;
 	}
 }
 
