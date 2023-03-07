@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 15:10:32 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:26:22 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ void	plot_line_high(t_data *data, int start_x, int start_y, t_plot plot)
 
 void	draw_grid(t_data *data, char ***map)
 {
-	int	cell;
+	int	gridsize;
 
-	cell = count_map(map);
+	gridsize = CELL_SIZE / count_map(map);
 	data->y = 0;
 	while (map[++data->i])
 	{
@@ -114,13 +114,13 @@ void	draw_grid(t_data *data, char ***map)
 			if (map[data->i + 1])
 				data->lownr = (ft_atoi(map[data->i + 1][data->j]));
 			if (map[data->i][data->j + 1] && map[data->i][data->j])
-				plot_y(data, cell);
+				plot_y(data, gridsize);
 			if (map[data->i + 1] && map[data->i])
-				plot_x(data, cell);
-			data->x += (CELL_SIZE / cell);
+				plot_x(data, gridsize);
+			data->x += (gridsize);
 		}
 		data->j = 0;
-		data->y += (CELL_SIZE / cell);
+		data->y += (gridsize);
 	}
 }
 
@@ -132,7 +132,7 @@ int	main(int argc, char **argv)
 	char	***map;
 
 	if (argc != 2)
-		exit (9);
+		exit (2);
 	map = parse_map(argv);
 	if (!map)
 		exit (1);

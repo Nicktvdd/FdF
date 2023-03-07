@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 15:10:24 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:16:49 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	openfdf(char **argv)
 	int	fd;
 
 	fd = open(argv[1], O_RDONLY);
-	if (!fd)
+	if (fd < 1)
 		exit (0);
 	return (fd);
 }

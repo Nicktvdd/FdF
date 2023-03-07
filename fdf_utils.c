@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 13:22:23 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 14:55:27 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:26:21 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,24 @@ int	close_window(void)
 	exit(0);
 }
 
-void	plot_x(t_data *data, int cell)
+void	plot_x(t_data *data, int gridsize)
 {
 	t_line	line;
 
 	line.start_x = data->x - data->nr;
 	line.start_y = data->y - data->nr;
 	line.end_x = data->x - data->lownr;
-	line.end_y = data->y + (CELL_SIZE / cell) - data->lownr;
+	line.end_y = data->y + (gridsize) - data->lownr;
 	plot_line(data, line);
 }
 
-void	plot_y(t_data *data, int cell)
+void	plot_y(t_data *data, int gridsize)
 {
 	t_line	line;
 
 	line.start_x = data->x - data->nr;
 	line.start_y = data->y - data->nr;
-	line.end_x = data->x + (CELL_SIZE / cell) - data->nxtnr;
+	line.end_x = data->x + (gridsize) - data->nxtnr;
 	line.end_y = data->y - data->nxtnr;
 	plot_line(data, line);
 }
