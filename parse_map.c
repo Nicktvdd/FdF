@@ -6,13 +6,23 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 13:27:07 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 14:55:26 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft/libft.h"
 // PROTECT ALL MALLOCS
+int	count_map(char ***map)
+{
+	int	count;
+
+	count = 0;
+	while (map[count])
+		count++;
+	return (count);
+}
+
 int	count_lines(int fd)
 {
 	char	*line;

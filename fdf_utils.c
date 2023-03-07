@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 13:22:23 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 14:47:27 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 14:55:27 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,4 @@ void	plot_y(t_data *data, int cell)
 	line.end_x = data->x + (CELL_SIZE / cell) - data->nxtnr;
 	line.end_y = data->y - data->nxtnr;
 	plot_line(data, line);
-}
-
-int	count_map(char ***map)
-{
-	int	count;
-	
-	count = 0;
-	while(map[count])
-		count++;
- 	ft_printf("%i", count);
-	return(count);
 }

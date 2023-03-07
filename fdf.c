@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 14:48:35 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 14:54:51 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	plot_line_high(t_data *data, int start_x, int start_y, t_plot plot)
 void	draw_grid(t_data *data, char ***map)
 {
 	int	cell;
-	
+
 	cell = count_map(map);
 	data->y = 0;
 	while (map[++data->i])
