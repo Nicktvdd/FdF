@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 12:27:16 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 13:01:15 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	plot_x(t_data *data)
 	line.start_x = data->x - data->nr;
 	line.start_y = data->y - data->nr;
 	line.end_x = data->x - data->lownr;
-	line.end_y = data->y + CELL_SIZE - data->lownr;
+	line.end_y = data->y + data->cell_size - data->lownr;
 	plot_line(data, line);
 }
 
@@ -59,7 +59,7 @@ void	plot_y(t_data *data)
 
 	line.start_x = data->x - data->nr;
 	line.start_y = data->y - data->nr;
-	line.end_x = data->x + CELL_SIZE - data->nxtnr;
+	line.end_x = data->x + data->cell_size - data->nxtnr;
 	line.end_y = data->y - data->nxtnr;
 	plot_line(data, line);
 }
@@ -128,6 +128,7 @@ void	draw_grid(t_data *data, char ***map)
 	while (map[++data->i])
 	{
 		data->x = WIDTH / 2;
+		data->cell_size = 10; // CHANGE THIS YO
 		while (map[data->i][++data->j])
 		{
 			if (map[data->i][data->j])
@@ -140,10 +141,10 @@ void	draw_grid(t_data *data, char ***map)
 				plot_y(data); //y
 			if (map[data->i + 1] && map[data->i])
 				plot_x(data); //x
-			data->x += CELL_SIZE;
+			data->x += data->cell_size;
 		}
 		data->j = 0;
-		data->y += CELL_SIZE;
+		data->y += data->cell_size;
 	}
 }
 
