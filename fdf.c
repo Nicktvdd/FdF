@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 14:54:51 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:10:32 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,9 +131,11 @@ int	main(int argc, char **argv)
 	t_data	img;
 	char	***map;
 
-	map = parse_map(argc, argv);
+	if (argc != 2)
+		exit (9);
+	map = parse_map(argv);
 	if (!map)
-		return (1);
+		exit (1);
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "Grid_FDF");
 	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);

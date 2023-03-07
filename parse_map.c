@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 14:55:26 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:10:24 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ int	openfdf(char **argv)
 
 	fd = open(argv[1], O_RDONLY);
 	if (!fd)
-	{
 		exit (0);
-	}
 	return (fd);
 }
 
@@ -75,13 +73,11 @@ char	***create_array(int fd, char ***map)
 	return (map);
 }
 
-char	***parse_map(int argc, char **argv)
+char	***parse_map(char **argv)
 {
 	int		fd;
 	char	***map;
 
-	if (argc == 0)
-		return (0);
 	fd = openfdf(argv);
 	map = malloc(sizeof(char **) * count_lines(fd));
 	if (!map)

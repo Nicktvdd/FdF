@@ -66,3 +66,8 @@ testpylone:
 
 norm:
 	norminette fdf.c fdf.h parse_map.c fdf_utils.c
+
+wrongtest:
+	rm -f $(NAME)
+	make all
+	./fdf test_maps/bullshit.fdf
