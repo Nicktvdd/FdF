@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:35:05 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 13:31:19 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 13:35:33 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,7 @@ int		close_window(void);
 int		main(int argc, char **argv);
 int		count_lines(int fd);
 char	***parse_map(int argc, char **argv);
+void	plot_x(t_data *data);
+void	plot_y(t_data *data);
 
 #endif

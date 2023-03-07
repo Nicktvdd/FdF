@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 13:22:23 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/02/22 11:10:10 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 13:37:06 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,26 @@ int	key_press_exit(int key)
 int	close_window(void)
 {
 	exit(0);
+}
+
+void	plot_x(t_data *data)
+{
+	t_line	line;
+
+	line.start_x = data->x - data->nr;
+	line.start_y = data->y - data->nr;
+	line.end_x = data->x - data->lownr;
+	line.end_y = data->y + CELL_SIZE - data->lownr;
+	plot_line(data, line);
+}
+
+void	plot_y(t_data *data)
+{
+	t_line	line;
+
+	line.start_x = data->x - data->nr;
+	line.start_y = data->y - data->nr;
+	line.end_x = data->x + CELL_SIZE - data->nxtnr;
+	line.end_y = data->y - data->nxtnr;
+	plot_line(data, line);
 }

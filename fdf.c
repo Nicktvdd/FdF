@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 13:31:21 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 13:37:09 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	plot_line(t_data *data, t_line line)
 {
 	t_plot	plot;
-	
+
 	plot.delta_x = line.start_x - line.end_x;
 	plot.delta_y = line.start_y - line.end_y;
 	plot.end_x = line.start_x;
 	plot.end_y = line.start_y;
-	if (abs(line.end_y - line.start_y) > abs(line.end_x - line.start_x)) //x
+	if (abs(line.end_y - line.start_y) > abs(line.end_x - line.start_x))
 	{
 		plot_line_low(data, line.end_x, line.end_y, plot);
 		plot.delta_x = line.end_x - line.start_x;
@@ -28,7 +28,7 @@ void	plot_line(t_data *data, t_line line)
 		plot.end_y = line.end_y;
 		plot_line_low(data, line.start_x, line.start_y, plot);
 	}
-	else //y
+	else
 	{
 		plot_line_high(data, line.end_x, line.end_y, plot);
 		plot.delta_x = line.end_x - line.start_x;
@@ -36,32 +36,6 @@ void	plot_line(t_data *data, t_line line)
 		plot.end_x = line.end_x;
 		plot_line_high(data, line.start_x, line.start_y, plot);
 	}
-}
-
-//split plot line into two functions:
-
-// create function for x drawing
-void	plot_x(t_data *data)
-{
-	t_line	line;
-	
-	line.start_x = data->x - data->nr;
-	line.start_y = data->y - data->nr;
-	line.end_x = data->x - data->lownr;
-	line.end_y = data->y + CELL_SIZE - data->lownr;
-	plot_line(data, line);
-}
-
-// create function for y drawing
-void	plot_y(t_data *data)
-{
-	t_line	line;
-
-	line.start_x = data->x - data->nr;
-	line.start_y = data->y - data->nr;
-	line.end_x = data->x + CELL_SIZE - data->nxtnr;
-	line.end_y = data->y - data->nxtnr;
-	plot_line(data, line);
 }
 
 void	plot_line_low(t_data *data, int start_x, int start_y, t_plot plot)
@@ -137,9 +111,9 @@ void	draw_grid(t_data *data, char ***map)
 			if (map[data->i + 1])
 				data->lownr = (ft_atoi(map[data->i + 1][data->j]));
 			if (map[data->i][data->j + 1] && map[data->i][data->j])
-				plot_y(data); //y
+				plot_y(data);
 			if (map[data->i + 1] && map[data->i])
-				plot_x(data); //x
+				plot_x(data);
 			data->x += CELL_SIZE;
 		}
 		data->j = 0;
