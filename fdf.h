@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:35:05 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 13:35:33 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 14:46:25 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define CELL_SIZE 40
+# define CELL_SIZE 400
 
 typedef struct s_data
 {
@@ -70,7 +70,8 @@ int		close_window(void);
 int		main(int argc, char **argv);
 int		count_lines(int fd);
 char	***parse_map(int argc, char **argv);
-void	plot_x(t_data *data);
-void	plot_y(t_data *data);
+void	plot_x(t_data *data, int cell);
+void	plot_y(t_data *data, int cell);
+int		count_map(char ***map);
 
 #endif

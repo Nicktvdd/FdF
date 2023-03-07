@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 13:37:09 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 14:48:35 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@ void	plot_line_high(t_data *data, int start_x, int start_y, t_plot plot)
 
 void	draw_grid(t_data *data, char ***map)
 {
+	int	cell;
+	
+	cell = count_map(map);
 	data->y = 0;
 	while (map[++data->i])
 	{
@@ -111,13 +114,13 @@ void	draw_grid(t_data *data, char ***map)
 			if (map[data->i + 1])
 				data->lownr = (ft_atoi(map[data->i + 1][data->j]));
 			if (map[data->i][data->j + 1] && map[data->i][data->j])
-				plot_y(data);
+				plot_y(data, cell);
 			if (map[data->i + 1] && map[data->i])
-				plot_x(data);
-			data->x += CELL_SIZE;
+				plot_x(data, cell);
+			data->x += (CELL_SIZE / cell);
 		}
 		data->j = 0;
-		data->y += CELL_SIZE;
+		data->y += (CELL_SIZE / cell);
 	}
 }
 
