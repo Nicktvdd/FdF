@@ -6,42 +6,13 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 12:57:23 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 13:27:07 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft/libft.h"
 // PROTECT ALL MALLOCS
-size_t	ft_strlen_3d(char ***str)
-{
-	size_t	i;
-	size_t	j;
-	size_t	k;
-	size_t	len;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	len = 0;
-	while (str[i])
-	{
-		while (str[i][j])
-		{
-			while (str[i][j][k])
-			{
-				k++;
-				len++;
-			}
-			k = 0;
-			j++;
-		}
-		j = 0;
-		i++;
-	}
-	return (len);
-}
-
 int	count_lines(int fd)
 {
 	char	*line;

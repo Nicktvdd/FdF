@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:35:05 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 12:59:59 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 13:31:19 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+# define CELL_SIZE 40
 
 typedef struct s_data
 {
@@ -37,7 +38,6 @@ typedef struct s_data
 	int		nr;
 	int		nxtnr;
 	int		lownr;
-	int		cell_size;
 }			t_data;
 
 typedef struct s_plot

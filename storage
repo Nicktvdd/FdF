@@ -45,3 +45,14 @@ void	plot_y(t_data *data)
 	plot.end_x = line.end_x;
 	plot_line_high(data, line.start_x, line.start_y, plot);
 }
+
+int	count_map(char ***map)
+{
+	int	count;
+	
+	count = 0;
+	while(map[count][1][1])
+		count++;
+ 	ft_printf("%i", count);
+	return(count);
+}
