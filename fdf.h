@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:35:05 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/03 16:05:36 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/07 12:27:17 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_line {
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	plot_line_high(t_data *data, int start_x, int start_y, t_plot plot);
 void	plot_line_low(t_data *data, int start_x, int start_y, t_plot plot);
-void	plot_line(t_data *data, int start_x, int start_y, int end_x, int end_y);
+void	plot_line(t_data *data, t_line line);
 int		key_press_exit(int key);
 int		close_window(void);
 int		main(int argc, char **argv);
