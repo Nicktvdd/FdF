@@ -71,3 +71,13 @@ wrongtest:
 	rm -f $(NAME)
 	make all
 	./fdf test_maps/bullshit.fdf
+
+notest:
+	rm -f $(NAME)
+	make all
+	./fdf
+
+multitest:
+	rm -f $(NAME)
+	make all
+	./fdf test_maps/42.fdf test_maps/10-70.fdf
