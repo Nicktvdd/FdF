@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/08 10:27:43 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:12:02 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ int	count_lines(int fd)
 	line = get_next_line(fd);
 	if (!line)
 		exit (1);
+	if (strchr(line, 'x'))
+		{
+			free(line);
+			exit(9);
+		}
 	while (line)
 	{
 		free(line);
