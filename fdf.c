@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/08 10:25:55 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/08 11:21:34 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,10 @@ void	draw_grid(t_data *data, char ***map)
 
 	gridsize = CELL_SIZE / count_map(map);
 	data->y = 0;
-	while (map[++data->i])
+	while (map[data->i])
 	{
 		data->x = WIDTH / 2;
-		while (map[data->i][++data->j])
+		while (map[data->i][data->j])
 		{
 			if (map[data->i][data->j])
 				data->nr = (ft_atoi(map[data->i][data->j]));
@@ -118,7 +118,9 @@ void	draw_grid(t_data *data, char ***map)
 			if (map[data->i + 1] && map[data->i])
 				plot_x(data, gridsize);
 			data->x += gridsize;
+			data->j++;
 		}
+		data->i++;
 		data->j = 0;
 		data->y += gridsize;
 	}
