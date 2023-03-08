@@ -81,3 +81,13 @@ multitest:
 	rm -f $(NAME)
 	make all
 	./fdf test_maps/42.fdf test_maps/10-70.fdf
+
+testt2:
+	rm -f $(NAME)
+	make all
+	./fdf test_maps/t2.fdf
+
+testjulia:
+	rm -f $(NAME)
+	make all
+	./fdf test_maps/julia.fdf
