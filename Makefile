@@ -82,6 +82,11 @@ multitest:
 	make all
 	./fdf test_maps/42.fdf test_maps/10-70.fdf
 
+testt1:
+	rm -f $(NAME)
+	make all
+	./fdf test_maps/t1.fdf
+
 testt2:
 	rm -f $(NAME)
 	make all
@@ -92,3 +97,12 @@ testjulia:
 	make all
 	./fdf test_maps/julia.fdf
 
+testpentenegpos:
+	rm -f $(NAME)
+	make all
+	./fdf test_maps/pentenegpos.fdf
+
+testpyramide:
+	rm -f $(NAME)
+	make all
+	./fdf test_maps/pyramide.fdf
