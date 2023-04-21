@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/08 17:09:23 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/04/21 13:59:25 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,11 @@ char	***create_array(int fd, char ***map)
 	line = get_next_line(fd);
 	while (line)
 	{
-		buffer = ft_strtrim(line, " \n");
+		ft_printf("%i ", i);
+		buffer = ft_strtrim(line, "\n");
 		free(line);
-		line = buffer;
-		map[i] = ft_split(line, ' ');
+		//line = buffer;
+		map[i] = ft_split(buffer, ' ');
 		free(buffer);
 		if (!map[i++])
 			return (NULL);
@@ -74,7 +75,7 @@ char	***create_array(int fd, char ***map)
 	}
 	if (line)
 		free(line);
-	map[i] = NULL;
+	map[i] = NULL; // problem is before this!
 	return (map);
 }
 
@@ -84,7 +85,7 @@ char	***parse_map(char **argv)
 	char	***map;
 
 	fd = openfdf(argv);
-	map = malloc(sizeof(char *) * count_lines(fd));
+	map = malloc(sizeof(char **) * (count_lines(fd) + 1));
 	if (!map)
 		return (NULL);
 	close(fd);

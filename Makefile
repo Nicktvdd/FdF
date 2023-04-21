@@ -5,7 +5,7 @@ OBJS = $(SRCS:.c=.o)
 LIBMLX = minilibx_macos/libmlx.a
 LIBFT = libft/libft.a
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 LDFLAGS = -Lminilibx_macos -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)
@@ -91,3 +91,4 @@ testjulia:
 	rm -f $(NAME)
 	make all
 	./fdf test_maps/julia.fdf
+
