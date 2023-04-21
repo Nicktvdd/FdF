@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:35:05 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/07 15:10:47 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/04/21 14:48:01 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define CELL_SIZE 400
+# define CELL_SIZE 500
 
 typedef struct s_data
 {

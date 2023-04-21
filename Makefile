@@ -5,7 +5,7 @@ OBJS = $(SRCS:.c=.o)
 LIBMLX = minilibx_macos/libmlx.a
 LIBFT = libft/libft.a
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 LDFLAGS = -Lminilibx_macos -lmlx -framework OpenGL -framework AppKit
 
 all: $(NAME)

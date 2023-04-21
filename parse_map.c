@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/04/21 13:59:25 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/04/21 14:31:43 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	***parse_map(char **argv)
 	char	***map;
 
 	fd = openfdf(argv);
-	map = malloc(sizeof(char **) * (count_lines(fd) + 1));
+	map = malloc(sizeof(char ***) * (count_lines(fd) + 1));
 	if (!map)
 		return (NULL);
 	close(fd);
