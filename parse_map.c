@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/03/08 14:28:50 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:09:23 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	***parse_map(char **argv)
 		return (NULL);
 	close(fd);
 	fd = openfdf(argv);
-	map = create_array(fd, map);
+	map = create_array(fd, map); // problem is in this/after this!
 	close(fd);
 	return (map);
 }
