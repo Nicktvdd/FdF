@@ -6,11 +6,28 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/04/24 12:58:47 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:15:56 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+void free_map(char ***map)
+{
+    int i = 0, j = 0;
+
+    while (map[i] != NULL)
+    {
+        j = 0;
+        while (map[i][j] != NULL)
+        {
+            free(map[i][j]);
+            j++;
+        }
+        free(map[i]);
+        i++;
+    }
+    free(map);
+}
 
 void	plot_line(t_data *data, t_line line)
 {
@@ -123,6 +140,7 @@ void	draw_grid(t_data *data, char ***map)
 		data->j = 0;
 		data->y += gridsize;
 	}
+	free_map(map);
 }
 
 int	main(int argc, char **argv)
