@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 10:57:53 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/04/26 13:55:42 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:46:22 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int	ft_atoi(const char *str)
 	i = 0;
 	res = 0;
 	min = 1;
-	if (str == NULL)
-		return(0);
 	while (str[i] == ' ' || (str[i] > 8 && str[i] < 14))
 		i++;
 	if (str[i] == '-')
