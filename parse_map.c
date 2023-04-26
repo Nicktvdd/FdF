@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/04/24 14:58:04 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/04/26 13:03:42 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ int	count_lines(int fd)
 	if (!line)
 		exit (1);
 	while (line)
-	{
+	{		
+		ft_printf("in countlines %i\n", count);
 		free(line);
 		count++;
 		line = get_next_line(fd);
 	}
 	if (line)
 		free(line);
+	ft_printf("in countlines end\n");
 	return (count);
 }
 
@@ -66,9 +68,10 @@ char	***create_array(int fd, char ***map)
 	while (line)
 	{
 		ft_printf("%i ", i);
+		buffer = line;
 		buffer = ft_strtrim(line, "\n");
 		free(line);
-		//line = buffer;
+		line = buffer;
 		map[i] = ft_split(buffer, ' ');
 		if (buffer)
 			free(buffer);
@@ -89,7 +92,7 @@ char	***parse_map(char **argv)
 
 	fd = openfdf(argv);
 	ft_printf("before malloc\n");
-	map = malloc(sizeof(char ***) * (count_lines(fd) + 1)); //problem here!
+	map = malloc(sizeof(char ***) * count_lines(fd)); //problem here!
 	ft_printf("after malloc\n");
 	if (!map)
 		return (NULL);
