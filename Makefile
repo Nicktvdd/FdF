@@ -11,7 +11,7 @@ LDFLAGS = -Lminilibx_macos -lmlx -framework OpenGL -framework AppKit
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBMLX) $(LIBFT)
-	gcc $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJS) $(LIBMLX) $(LIBFT)
+	cc $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJS) $(LIBMLX) $(LIBFT)
 
 %.o: %.c
 	make -C libft/

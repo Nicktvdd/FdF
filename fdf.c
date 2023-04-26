@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/04/26 16:33:10 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:45:21 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int	main(int argc, char **argv)
 	t_data	img;
 	char	***map;
 
-	if (argc != 2 || ft_strnstr(argv[0], ".fdf", 255) == NULL)
+	if (argc != 2 || ft_strnstr(argv[1], ".fdf", 255) == NULL)
 		exit (2);
 	map = parse_map(argv);
 	if (!map)
