@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:42:44 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/04/26 13:11:18 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:04:13 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,8 @@ char	*store_next_line(char *line)
 	int		j;
 	char	*next_line;
 
-	i = 0;
+	i = 1;
 	j = 0;
-	while (line[i])
-		i++;
 	while (line[i] && line[i - 1] != '\n')
 		i++;
 	if (!line[i])
