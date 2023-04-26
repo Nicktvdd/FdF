@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 12:35:05 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/04/21 15:38:13 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:50:29 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ char	***parse_map(char **argv);
 void	plot_x(t_data *data, int cell);
 void	plot_y(t_data *data, int cell);
 int		count_map(char ***map);
+void	free_map(char ***map);
 
 #endif

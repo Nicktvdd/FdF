@@ -6,28 +6,11 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/04/26 14:41:25 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:49:04 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-void free_map(char ***map)
-{
-    int i = 0, j = 0;
-
-    while (map[i] != NULL)
-    {
-        j = 0;
-        while (map[i][j] != NULL)
-        {
-            free(map[i][j]);
-            j++;
-        }
-        free(map[i]);
-        i++;
-    }
-    free(map);
-}
 
 void	plot_line(t_data *data, t_line line)
 {
