@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:36 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/04/26 15:49:04 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:05:03 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ void	draw_grid(t_data *data, char ***map)
 		data->j = 0;
 		data->y += gridsize;
 	}
-	free_map(map);
 }
 
 int	main(int argc, char **argv)

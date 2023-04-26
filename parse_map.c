@@ -6,7 +6,7 @@
 /*   By: nvan-den <nvan-den@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 15:17:31 by nvan-den          #+#    #+#             */
-/*   Updated: 2023/04/26 15:05:01 by nvan-den         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:56:52 by nvan-den         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,12 @@ int	count_lines(int fd)
 		exit (1);
 	while (line)
 	{		
-		ft_printf("in countlines %i\n", count);
 		free(line);
 		count++;
 		line = get_next_line(fd);
 	}
 	if (line)
 		free(line);
-	ft_printf("in countlines end\n");
 	return (count);
 }
 
@@ -62,12 +60,9 @@ char	***create_array(int fd, char ***map)
 	char	*buffer;
 
 	i = 0;
-	ft_printf("before gnl\n");
 	line = get_next_line(fd);
-		ft_printf("after gnl\n");
 	while (line)
 	{
-		ft_printf("%i ", i);
 		buffer = line;
 		buffer = ft_strtrim(line, "\n");
 		free(line);
@@ -81,7 +76,7 @@ char	***create_array(int fd, char ***map)
 	}
 	if (line)
 		free(line);
-	map[i] = NULL; // problem is before this!
+	map[i] = NULL;
 	return (map);
 }
 
@@ -91,14 +86,12 @@ char	***parse_map(char **argv)
 	char	***map;
 
 	fd = openfdf(argv);
-	ft_printf("before malloc\n");
-	map = malloc(sizeof(char ***) * (count_lines(fd) + 1)); //problem here!
-	ft_printf("after malloc\n");
+	map = malloc(sizeof(char ***) * (count_lines(fd) + 1));
 	if (!map)
 		return (NULL);
 	close(fd);
 	fd = openfdf(argv);
-	map = create_array(fd, map); // problem is in this/after this!
-		close(fd);
+	map = create_array(fd, map);
+	close(fd);
 	return (map);
 }

@@ -1,5 +1,5 @@
 NAME = fdf
-SRCS = fdf.c parse_map.c fdf_utils.c fdf_utils1.c
+SRCS = fdf.c parse_map.c fdf_utils.c
 OBJS = $(SRCS:.c=.o)
 
 LIBMLX = minilibx_macos/libmlx.a
@@ -65,7 +65,7 @@ testpylone:
 	./fdf test_maps/pylone.fdf
 
 norm:
-	norminette fdf.c fdf.h parse_map.c fdf_utils.c fdf_utils1.c
+	norminette fdf.c fdf.h parse_map.c fdf_utils.c
 
 wrongtest:
 	rm -f $(NAME)
